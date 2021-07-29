@@ -4,9 +4,7 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -33,7 +31,9 @@ public class Ticket {
   private Integer priorityID;
   @NonNull
   @Column(name = "status_id")
-  private Integer statusID;
+  @ManyToOne
+  @JoinColumn(name = "ticket_status_id")
+  private TicketStatus status;
   @NonNull
   @Column(name = "group_id")
   private Integer groupID;
