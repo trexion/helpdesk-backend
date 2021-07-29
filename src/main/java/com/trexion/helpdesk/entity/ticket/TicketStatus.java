@@ -3,7 +3,6 @@ package com.trexion.helpdesk.entity.ticket;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -12,14 +11,15 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class TicketStatus {
-  @Id
-  @Column(name = "ticket_status_id")
-  @EqualsAndHashCode.Include
-  private Integer ticketStatusID;
-  @NonNull
-  private String ticketStatusName;
-  @Builder.Default
-  private boolean active = true;
-  @OneToMany(mappedBy = "status_id")
-  private List<Ticket> tickets;
+    @Id
+    @Column(name = "ticket_status_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    private Integer id;
+    @NonNull
+    @Column(nullable = false)
+    private String name;
+    @Builder.Default
+    @Column(nullable = false)
+    private boolean active = true;
 }
