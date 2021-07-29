@@ -3,6 +3,7 @@ package com.trexion.helpdesk.entity.ticket;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor

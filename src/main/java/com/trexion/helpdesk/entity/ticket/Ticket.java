@@ -15,8 +15,6 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Ticket {
     @Id
-    @Column(name = "ticket_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private String id;
     @NonNull
@@ -37,13 +35,18 @@ public class Ticket {
     @NonNull
     @Column(nullable = false, name = "user_id")
     private String userID;
+    @NonNull
+    @Column(nullable = false, name = "requester_id")
+    private String requesterID;
+    @Column(nullable = false, name = "technician_id")
+    private String technicianID;
     @CreationTimestamp
     private LocalDateTime createDateTime;
     @UpdateTimestamp
     private LocalDateTime updateDateTime;
     @NonNull
     @ManyToOne
-    @JoinColumn(nullable = false, name = "ticket_status_id")
+    @JoinColumn(nullable = false, name = "status_id", referencedColumnName = "ticket_status_id")
     @ToString.Exclude
     private TicketStatus status;
 }
