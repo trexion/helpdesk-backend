@@ -1,5 +1,11 @@
 spring:
   jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     show-sql: true
+  datasource:
+    #TODO Review https://thorben-janssen.com/naming-strategies-in-hibernate-5/
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/helpdesk
+    username: root
+    password:
