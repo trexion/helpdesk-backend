@@ -26,7 +26,7 @@ public class Entities {
                 .build();
     }
 
-    private static TicketStatus randomTicketStatus() {
+    public static TicketStatus randomTicketStatus() {
         return TicketStatus.builder()
                 .name(randomAlphabetic(20))
                 .build();
