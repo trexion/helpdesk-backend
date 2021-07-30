@@ -1,5 +1,6 @@
 package com.trexion.helpdesk.service.ticket;
 
+import com.trexion.helpdesk.dto.response.ticket.TicketWithStatusDto;
 import com.trexion.helpdesk.entity.ticket.Ticket;
 import com.trexion.helpdesk.repository.ticket.TicketRepo;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +17,16 @@ public class TicketService {
     return ticketRepo.findAll();
   }
 
-  public Ticket getTicket(String ticketID) {
-    return ticketRepo.getById(ticketID);
+  public TicketWithStatusDto getTicket(String ticketID) {
+    return mapTicketToDto(ticketRepo.getById(ticketID));
+  }
+
+  private TicketWithStatusDto mapTicketToDto (Ticket ticket){
+    return TicketWithStatusDto.builder()
+        .id(ticket.getId())
+        .subject(ticket.getSubject())
+        .description(ticket.getDescription())
+        .status(new TicketWithStatusDto.TicketStatusDto(ticket.getStatus().getName()))
+        .build();
   }
 }

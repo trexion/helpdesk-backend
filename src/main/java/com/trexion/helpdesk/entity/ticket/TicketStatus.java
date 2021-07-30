@@ -1,5 +1,6 @@
 package com.trexion.helpdesk.entity.ticket;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -23,4 +24,6 @@ public class TicketStatus {
     @Builder.Default
     @Column(nullable = false)
     private boolean active = true;
+    @OneToMany(mappedBy = "status")
+    private List<Ticket> tickets;
 }
