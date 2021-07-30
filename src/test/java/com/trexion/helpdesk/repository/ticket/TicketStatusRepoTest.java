@@ -1,7 +1,6 @@
 package com.trexion.helpdesk.repository.ticket;
 
 import com.trexion.helpdesk.Entities;
-import com.trexion.helpdesk.entity.ticket.Ticket;
 import com.trexion.helpdesk.entity.ticket.TicketStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -29,5 +28,4 @@ class TicketStatusRepoTest {
         //Then
         assertThat(ticketStatusRepo.getById(ticketStatus.getId())).isEqualTo(ticketStatus);
     }
-
 }
