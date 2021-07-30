@@ -1,4 +1,4 @@
-package com.trexion.helpdesk.repository.ticket;
+package com.trexion.helpdesk;
 
 import com.trexion.helpdesk.entity.ticket.Ticket;
 import com.trexion.helpdesk.entity.ticket.TicketStatus;
