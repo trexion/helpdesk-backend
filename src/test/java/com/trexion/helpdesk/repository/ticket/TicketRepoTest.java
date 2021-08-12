@@ -23,7 +23,7 @@ class TicketRepoTest {
     @DisplayName("save should persist a given unpersisted entity")
     void save_() {
         //Given
-        Ticket ticket = Entities.randomPersistedTicket();
+        Ticket ticket = Entities.randomTicket();
         ticketStatusRepo.save(ticket.getStatus());
 
         //When

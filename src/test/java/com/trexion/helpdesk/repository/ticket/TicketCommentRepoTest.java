@@ -4,6 +4,7 @@ import com.trexion.helpdesk.Entities;
 import com.trexion.helpdesk.entity.ticket.Ticket;
 import com.trexion.helpdesk.entity.ticket.TicketComment;
 import com.trexion.helpdesk.entity.ticket.TicketStatus;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,20 +23,30 @@ class TicketCommentRepoTest {
     @Autowired
     private TicketCommentRepo ticketCommentRepo;
 
+    private Ticket newTicket;
+
+    @BeforeEach
+    void init() {
+        newTicket = Entities.randomTicket();
+        ticketStatusRepo.save(newTicket.getStatus());
+        ticketRepo.save(newTicket);
+    }
+
     @Test
     @DisplayName("save should persist a given unpersisted entity")
-    void save_(){
+    void save_() {
         //Given
-        TicketStatus ticketStatus = Entities.randomPersistedTicketStatus();
-        ticketStatusRepo.save(ticketStatus);
+        TicketComment ticketComment = Entities.randomPersistedTicketComment(newTicket);
 
-        Ticket ticket = Entities.randomPersistedTicket();
-        ticketRepo.save(ticket);
-
-        TicketComment ticketComment = Entities.randomPersistedTicketComment(ticket);
         //When
         ticketCommentRepo.save(ticketComment);
+
         //Then
-        assertThat(ticketCommentRepo.getById(ticketComment.getId()));
+        assertThat(ticketComment.getId()).satisfies(
+                v -> {
+                    assertThat(v).isNotNull();
+                    assertThat(ticketCommentRepo.findById(v)).isNotNull();
+                }
+        );
     }
 }
