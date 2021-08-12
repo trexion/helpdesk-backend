@@ -1,6 +1,5 @@
 package com.trexion.helpdesk.dto.response.ticket;
 
-import com.trexion.helpdesk.entity.ticket.TicketComment;
 import lombok.Builder;
 import lombok.Value;
 
@@ -23,7 +22,6 @@ public class TicketFullDto {
 
     @Value
     public static class TicketCommentDto {
-        Integer id;
         String comment;
         String userID;
         LocalDateTime createDateTime;

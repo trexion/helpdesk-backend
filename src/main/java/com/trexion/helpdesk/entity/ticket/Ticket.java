@@ -39,6 +39,7 @@ public class Ticket {
     @NonNull
     @Column(nullable = false, name = "requester_id")
     private String requesterID;
+    @NonNull
     @Column(nullable = false, name = "technician_id")
     private String technicianID;
     @CreationTimestamp
@@ -51,5 +52,6 @@ public class Ticket {
     @ToString.Exclude
     private TicketStatus status;
     @OneToMany(mappedBy = "ticket")
+    @Singular
     private List<TicketComment> comments;
 }
