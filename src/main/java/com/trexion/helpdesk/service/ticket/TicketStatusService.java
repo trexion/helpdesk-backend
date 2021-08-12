@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -17,7 +18,7 @@ public class TicketStatusService {
     private final TicketStatusRepo ticketStatusRepo;
 
     public List<TicketStatusDto> getAll() {
-        return ticketStatusRepo.findAll().stream().map(t -> mapTicketStatusToDto(t));
+        return ticketStatusRepo.findAll().stream().map(t -> mapTicketStatusToDto(t)).collect(Collectors.toList());
 
     }
 
