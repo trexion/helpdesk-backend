@@ -12,7 +12,7 @@ public class TicketFullDto {
     String id;
     String subject;
     String description;
-    TicketStatusDto status;
+    String status;
     List<TicketCommentDto> comments;
 
     @Value

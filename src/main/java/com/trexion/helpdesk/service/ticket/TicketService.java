@@ -29,7 +29,7 @@ public class TicketService {
                 .id(ticket.getId())
                 .subject(ticket.getSubject())
                 .description(ticket.getDescription())
-                .status(new TicketFullDto.TicketStatusDto(ticket.getStatus().getName()))
+                .status(ticket.getStatus().getName())
                 .comments(mapCommentsToCommentDto(ticket))
                 .build();
     }
