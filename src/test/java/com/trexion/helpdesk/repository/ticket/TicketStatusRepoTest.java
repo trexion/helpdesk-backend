@@ -1,7 +1,7 @@
 package com.trexion.helpdesk.repository.ticket;
 
 import com.trexion.helpdesk.Entities;
-import com.trexion.helpdesk.entity.ticket.Ticket;
+import com.trexion.helpdesk.entity.ticket.TicketStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @ActiveProfiles("test")
-class TicketRepoTest {
-
-    @Autowired
-    private TicketRepo repo;
+class TicketStatusRepoTest {
     @Autowired
     private TicketStatusRepo ticketStatusRepo;
 
@@ -23,13 +20,12 @@ class TicketRepoTest {
     @DisplayName("save should persist a given unpersisted entity")
     void save_() {
         //Given
-        Ticket ticket = Entities.randomPersistedTicket();
-        ticketStatusRepo.save(ticket.getStatus());
+        TicketStatus ticketStatus = Entities.randomPersistedTicketStatus();
 
         //When
-        repo.save(ticket);
+        ticketStatusRepo.save(ticketStatus);
 
         //Then
-        assertThat(repo.getById(ticket.getId())).isEqualTo(ticket);
+        assertThat(ticketStatusRepo.getById(ticketStatus.getId())).isEqualTo(ticketStatus);
     }
 }
