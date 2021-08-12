@@ -1,6 +1,7 @@
 package com.trexion.helpdesk;
 
 import com.trexion.helpdesk.entity.ticket.Ticket;
+import com.trexion.helpdesk.entity.ticket.TicketComment;
 import com.trexion.helpdesk.entity.ticket.TicketStatus;
 
 import java.time.LocalDateTime;
@@ -24,6 +25,7 @@ public class Entities {
                 .createDateTime(LocalDateTime.now())
                 .updateDateTime(LocalDateTime.now())
                 .status(randomPersistedTicketStatus())
+                .comments(randomTicketComments())
                 .requesterID(randomAlphabetic(10))
                 .build();
     }
@@ -40,6 +42,23 @@ public class Entities {
         int size = nextInt(5, 10);
         for (int i = 0; i < size; i++)
             list.add(randomPersistedTicketStatus());
+        return list;
+    }
+
+    public static TicketComment randomPersistedTicketComment(Ticket ticket) {
+        return TicketComment.builder()
+                .id(nextInt())
+                .comment(randomAlphabetic(20))
+                .createDateTime(LocalDateTime.now())
+                .ticket(ticket)
+                .build();
+    }
+
+    public static List<TicketComment> randomTicketComments() {
+        List<TicketComment> list = new ArrayList<>();
+        int size = nextInt(5, 10);
+        for (int i = 0; i < size; i++)
+            list.add(randomPersistedTicketComment());
         return list;
     }
 }

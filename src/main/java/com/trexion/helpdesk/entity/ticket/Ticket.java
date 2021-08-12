@@ -39,8 +39,7 @@ public class Ticket {
     @NonNull
     @Column(nullable = false, name = "requester_id")
     private String requesterID;
-    @NonNull
-    @Column(nullable = false, name = "technician_id")
+    @Column(name = "technician_id")
     private String technicianID;
     @CreationTimestamp
     private LocalDateTime createDateTime;
