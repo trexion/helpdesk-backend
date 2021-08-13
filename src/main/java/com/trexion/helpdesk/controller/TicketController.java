@@ -1,7 +1,5 @@
 package com.trexion.helpdesk.controller;
 
-import com.trexion.helpdesk.dto.response.ticket.TicketWithStatusDto;
-import com.trexion.helpdesk.entity.ticket.Ticket;
 import com.trexion.helpdesk.service.ticket.TicketService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

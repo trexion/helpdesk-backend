@@ -6,6 +6,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -38,7 +39,7 @@ public class Ticket {
     @NonNull
     @Column(nullable = false, name = "requester_id")
     private String requesterID;
-    @Column(nullable = false, name = "technician_id")
+    @Column(name = "technician_id")
     private String technicianID;
     @CreationTimestamp
     private LocalDateTime createDateTime;
@@ -49,4 +50,7 @@ public class Ticket {
     @JoinColumn(nullable = false, name = "status_id", referencedColumnName = "ticket_status_id")
     @ToString.Exclude
     private TicketStatus status;
+    @OneToMany(mappedBy = "ticket")
+    @Singular
+    private List<TicketComment> comments;
 }
