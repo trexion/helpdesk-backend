@@ -6,6 +6,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -13,23 +14,28 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class TicketComment {
+public class TicketCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Integer id;
     @NonNull
-    @Column(nullable = false, columnDefinition = "VARCHAR(1000)")
-    private String comment;
-    @NonNull
-    @ManyToOne
-    @JoinColumn(nullable = false, name = "ticket_id", referencedColumnName = "id")
-    private Ticket ticket;
-    @NonNull
     @Column(nullable = false)
-    private String userID;
+    private String name;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent")
+    private TicketCategory parent;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
+    @ToString.Exclude
+    private List<TicketCategory> children;
+    @Column(nullable = false, columnDefinition = "boolean default true")
+    private boolean active;
     @CreationTimestamp
     @NonNull
     @Column(nullable = false)
     private LocalDateTime createDateTime;
+    @UpdateTimestamp
+    @NonNull
+    @Column(nullable = false)
+    private LocalDateTime updateDateTime;
 }

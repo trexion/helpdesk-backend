@@ -42,12 +42,16 @@ public class Ticket {
     @Column(name = "technician_id")
     private String technicianID;
     @CreationTimestamp
+    @NonNull
+    @Column(nullable = false)
     private LocalDateTime createDateTime;
     @UpdateTimestamp
+    @NonNull
+    @Column(nullable = false)
     private LocalDateTime updateDateTime;
     @NonNull
     @ManyToOne
-    @JoinColumn(nullable = false, name = "status_id", referencedColumnName = "ticket_status_id")
+    @JoinColumn(nullable = false, name = "status_id", referencedColumnName = "id")
     @ToString.Exclude
     private TicketStatus status;
     @OneToMany(mappedBy = "ticket")

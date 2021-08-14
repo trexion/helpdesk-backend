@@ -14,16 +14,15 @@ import java.util.List;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class TicketStatus {
     @Id
-    @Column(name = "ticket_status_id")
+    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Integer id;
     @NonNull
     @Column(nullable = false)
     private String name;
-    @Builder.Default
-    @Column(nullable = false)
-    private boolean active = true;
+    @Column(nullable = false, columnDefinition = "boolean default true")
+    private boolean active;
     @OneToMany(mappedBy = "status")
     private List<Ticket> tickets;
 }
