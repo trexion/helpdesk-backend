@@ -25,8 +25,8 @@ public class Ticket {
     @Column(nullable = false, columnDefinition = "VARCHAR(1000)")
     private String description;
     @NonNull
-    @Column(nullable = false, name = "category_id")
-    private Integer categoryID;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private TicketCategory category;
     @NonNull
     @Column(nullable = false, name = "priority_id")
     private Integer priorityID;

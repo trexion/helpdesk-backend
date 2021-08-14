@@ -1,6 +1,7 @@
 package com.trexion.helpdesk;
 
 import com.trexion.helpdesk.entity.ticket.Ticket;
+import com.trexion.helpdesk.entity.ticket.TicketCategory;
 import com.trexion.helpdesk.entity.ticket.TicketComment;
 import com.trexion.helpdesk.entity.ticket.TicketStatus;
 
@@ -43,7 +44,7 @@ public class Entities {
                 .id(UUID.randomUUID().toString())
                 .subject(randomAlphabetic(20))
                 .description(randomAlphabetic(20, 1000))
-                .categoryID(nextInt())
+                .category(randomTicketCategory())
                 .priorityID(nextInt())
                 .groupID(nextInt())
                 .userID(randomAlphabetic(20))
@@ -59,6 +60,14 @@ public class Entities {
         return TicketStatus.builder()
                 .name(randomAlphabetic(20))
                 .tickets(Collections.emptyList())
+                .build();
+    }
+
+    public static TicketCategory randomTicketCategory() {
+        return TicketCategory.builder()
+                .name(randomAlphabetic(10))
+                .createDateTime(LocalDateTime.now())
+                .updateDateTime(LocalDateTime.now())
                 .build();
     }
 }
