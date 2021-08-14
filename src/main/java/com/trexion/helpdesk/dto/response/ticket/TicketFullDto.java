@@ -14,8 +14,8 @@ public class TicketFullDto {
     String subject;
     String description;
     String status;
+    String category;
     List<TicketCommentDto> comments;
-    TicketCategory category;
 
     @Value
     public static class TicketCommentDto {
