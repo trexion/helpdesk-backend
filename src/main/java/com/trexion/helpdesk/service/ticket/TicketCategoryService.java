@@ -2,7 +2,6 @@ package com.trexion.helpdesk.service.ticket;
 
 import com.trexion.helpdesk.dto.response.ticket.TicketCategoryDto;
 import com.trexion.helpdesk.entity.ticket.TicketCategory;
-import com.trexion.helpdesk.entity.ticket.TicketCategoryChildrenDto;
 import com.trexion.helpdesk.repository.ticket.TicketCategoryRepo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,15 +24,7 @@ public class TicketCategoryService {
         return TicketCategoryDto.builder()
                 .id(ticketCategory.getId())
                 .name(ticketCategory.getName())
-                .children(ticketCategory.getChildren().stream().map(this::mapToTicketCategoryChildrenDto).collect(Collectors.toList()))
+                .children(ticketCategory.getChildren().stream().map(this::mapToTicketCategoryDto).collect(Collectors.toList()))
                 .build();
     }
-
-    private TicketCategoryChildrenDto mapToTicketCategoryChildrenDto(TicketCategory ticketCategoryChildren){
-        return TicketCategoryChildrenDto.builder()
-                .id(ticketCategoryChildren.getId())
-                .name(ticketCategoryChildren.getName())
-                .build();
-    }
-
 }

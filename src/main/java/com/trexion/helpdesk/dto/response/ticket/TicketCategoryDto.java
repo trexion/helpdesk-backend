@@ -1,6 +1,5 @@
 package com.trexion.helpdesk.dto.response.ticket;
 
-import com.trexion.helpdesk.entity.ticket.TicketCategoryChildrenDto;
 import lombok.Builder;
 import lombok.Value;
 
@@ -11,5 +10,5 @@ import java.util.List;
 public class TicketCategoryDto {
     Integer id;
     String name;
-    List<TicketCategoryChildrenDto> children;
+    List<TicketCategoryDto> children;
 }
