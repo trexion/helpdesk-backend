@@ -21,8 +21,9 @@ public class TicketStatus {
     @NonNull
     @Column(nullable = false)
     private String name;
+    @Builder.Default
     @Column(nullable = false, columnDefinition = "boolean default true")
-    private boolean active;
+    private boolean active = true;
     @OneToMany(mappedBy = "status")
     private List<Ticket> tickets;
 }

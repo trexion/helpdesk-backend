@@ -29,8 +29,9 @@ public class TicketCategory {
     private List<TicketCategory> children;
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "category")
     private List<Ticket> tickets;
+    @Builder.Default
     @Column(nullable = false, columnDefinition = "boolean default true")
-    private boolean active;
+    private boolean active = true;
     @CreationTimestamp
     @NonNull
     @Column(nullable = false)
