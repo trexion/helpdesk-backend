@@ -20,6 +20,10 @@ public class TicketCategoryService {
         return ticketCategoryRepo.findAllByParent(null).stream().map(this::mapToTicketCategoryDto).collect(Collectors.toList());
     }
 
+    public TicketCategoryDto getCategory(Integer id) {
+        return mapToTicketCategoryDto(ticketCategoryRepo.getById(id));
+    }
+
     private TicketCategoryDto mapToTicketCategoryDto(TicketCategory ticketCategory) {
         return TicketCategoryDto.builder()
                 .id(ticketCategory.getId())
