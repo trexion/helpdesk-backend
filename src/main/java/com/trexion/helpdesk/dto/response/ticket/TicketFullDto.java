@@ -1,5 +1,6 @@
 package com.trexion.helpdesk.dto.response.ticket;
 
+import com.trexion.helpdesk.entity.ticket.TicketCategory;
 import lombok.Builder;
 import lombok.Value;
 
@@ -14,11 +15,7 @@ public class TicketFullDto {
     String description;
     String status;
     List<TicketCommentDto> comments;
-
-    @Value
-    public static class TicketStatusDto {
-        String status;
-    }
+    TicketCategory category;
 
     @Value
     public static class TicketCommentDto {

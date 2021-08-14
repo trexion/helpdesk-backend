@@ -26,9 +26,8 @@ public class TicketCategory {
     @JoinColumn(name = "parent")
     private TicketCategory parent;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
-    @ToString.Exclude
     private List<TicketCategory> children;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "category")
     private List<Ticket> tickets;
     @Column(nullable = false, columnDefinition = "boolean default true")
     private boolean active;
