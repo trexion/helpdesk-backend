@@ -17,7 +17,7 @@ public class TicketCategoryService {
     private final TicketCategoryRepo ticketCategoryRepo;
 
     public List<TicketCategoryDto> getAll() {
-        return ticketCategoryRepo.findAllByParent(null).stream().map(this::mapToTicketCategoryDto).collect(Collectors.toList());
+        return ticketCategoryRepo.findAllParentCategories().stream().map(this::mapToTicketCategoryDto).collect(Collectors.toList());
     }
 
     public TicketCategoryDto getCategory(Integer id) {

@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
+import static org.apache.commons.lang3.RandomUtils.nextBoolean;
 import static org.apache.commons.lang3.RandomUtils.nextInt;
 
 public class Entities {
@@ -66,6 +67,9 @@ public class Entities {
     public static TicketCategory randomTicketCategory() {
         return TicketCategory.builder()
                 .name(randomAlphabetic(10))
+                .children(Collections.emptyList())
+                .active(nextBoolean())
+                .tickets(Collections.emptyList())
                 .createDateTime(LocalDateTime.now())
                 .updateDateTime(LocalDateTime.now())
                 .build();

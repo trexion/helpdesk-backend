@@ -26,6 +26,6 @@ class TicketCategoryRepoTest {
         ticketCategoryRepo.save(ticketCategory);
 
         //Then
-        assertThat(ticketCategoryRepo.getById(ticketCategory.getId())).isEqualTo(ticketCategory);
+        assertThat(ticketCategoryRepo.getById(ticketCategory.getId())).isNotNull().isEqualTo(ticketCategory);
     }
 }

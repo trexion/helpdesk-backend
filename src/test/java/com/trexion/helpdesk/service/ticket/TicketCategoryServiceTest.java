@@ -29,7 +29,7 @@ class TicketCategoryServiceTest {
     void getAll() {
         //Given
         List<TicketCategory> ticketCategories = Entities.randomTicketCategories();
-        when(ticketCategoryRepo.findAllByParent(null)).thenReturn(ticketCategories);
+        when(ticketCategoryRepo.findAllParentCategories()).thenReturn(ticketCategories);
 
         //When
         List<TicketCategoryDto> result = ticketCategoryService.getAll();
