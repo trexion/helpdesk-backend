@@ -70,4 +70,18 @@ public class Entities {
                 .updateDateTime(LocalDateTime.now())
                 .build();
     }
+
+    public static List<TicketCategory> randomTicketCategories() {
+        List<TicketCategory> list = new ArrayList<>();
+        int size = nextInt(5, 10);
+        for (int i = 0; i < size; i++)
+            list.add(randomPersistedTicketCategory());
+        return list;
+    }
+
+    private static TicketCategory randomPersistedTicketCategory() {
+        TicketCategory category = randomTicketCategory();
+        category.setId(nextInt());
+        return category;
+    }
 }
