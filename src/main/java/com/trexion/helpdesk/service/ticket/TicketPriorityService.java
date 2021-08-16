@@ -20,6 +20,10 @@ public class TicketPriorityService {
         return ticketPriorityRepo.findAllByActiveIsTrue().stream().map(this::mapToTicketPriorityDto).collect(Collectors.toList());
     }
 
+    public Object getPriority(Integer id) {
+        return mapToTicketPriorityDto(ticketPriorityRepo.getById(id));
+    }
+
     private TicketPriorityDto mapToTicketPriorityDto(TicketPriority ticketPriority) {
         return TicketPriorityDto.builder()
                 .id(ticketPriority.getId())
