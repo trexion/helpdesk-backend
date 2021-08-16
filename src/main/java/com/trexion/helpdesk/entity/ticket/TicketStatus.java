@@ -14,7 +14,7 @@ import java.util.List;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class TicketStatus {
     @Id
-    @Column(name = "ticket_status_id")
+    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Integer id;
@@ -22,7 +22,7 @@ public class TicketStatus {
     @Column(nullable = false)
     private String name;
     @Builder.Default
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "boolean default true")
     private boolean active = true;
     @OneToMany(mappedBy = "status")
     private List<Ticket> tickets;

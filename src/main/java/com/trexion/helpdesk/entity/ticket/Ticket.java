@@ -25,8 +25,8 @@ public class Ticket {
     @Column(nullable = false, columnDefinition = "VARCHAR(1000)")
     private String description;
     @NonNull
-    @Column(nullable = false, name = "category_id")
-    private Integer categoryID;
+    @ManyToOne
+    private TicketCategory category;
     @NonNull
     @Column(nullable = false, name = "priority_id")
     private Integer priorityID;
@@ -42,12 +42,16 @@ public class Ticket {
     @Column(name = "technician_id")
     private String technicianID;
     @CreationTimestamp
+    @NonNull
+    @Column(nullable = false)
     private LocalDateTime createDateTime;
     @UpdateTimestamp
+    @NonNull
+    @Column(nullable = false)
     private LocalDateTime updateDateTime;
     @NonNull
     @ManyToOne
-    @JoinColumn(nullable = false, name = "status_id", referencedColumnName = "ticket_status_id")
+    @JoinColumn(nullable = false, name = "status_id", referencedColumnName = "id")
     @ToString.Exclude
     private TicketStatus status;
     @OneToMany(mappedBy = "ticket")

@@ -1,6 +1,7 @@
 package com.trexion.helpdesk;
 
 import com.trexion.helpdesk.entity.ticket.Ticket;
+import com.trexion.helpdesk.entity.ticket.TicketCategory;
 import com.trexion.helpdesk.entity.ticket.TicketComment;
 import com.trexion.helpdesk.entity.ticket.TicketStatus;
 
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
+import static org.apache.commons.lang3.RandomUtils.nextBoolean;
 import static org.apache.commons.lang3.RandomUtils.nextInt;
 
 public class Entities {
@@ -43,7 +45,7 @@ public class Entities {
                 .id(UUID.randomUUID().toString())
                 .subject(randomAlphabetic(20))
                 .description(randomAlphabetic(20, 1000))
-                .categoryID(nextInt())
+                .category(randomTicketCategory())
                 .priorityID(nextInt())
                 .groupID(nextInt())
                 .userID(randomAlphabetic(20))
@@ -60,5 +62,30 @@ public class Entities {
                 .name(randomAlphabetic(20))
                 .tickets(Collections.emptyList())
                 .build();
+    }
+
+    public static TicketCategory randomTicketCategory() {
+        return TicketCategory.builder()
+                .name(randomAlphabetic(10))
+                .children(Collections.emptyList())
+                .active(nextBoolean())
+                .tickets(Collections.emptyList())
+                .createDateTime(LocalDateTime.now())
+                .updateDateTime(LocalDateTime.now())
+                .build();
+    }
+
+    public static List<TicketCategory> randomTicketCategories() {
+        List<TicketCategory> list = new ArrayList<>();
+        int size = nextInt(5, 10);
+        for (int i = 0; i < size; i++)
+            list.add(randomPersistedTicketCategory());
+        return list;
+    }
+
+    private static TicketCategory randomPersistedTicketCategory() {
+        TicketCategory category = randomTicketCategory();
+        category.setId(nextInt());
+        return category;
     }
 }

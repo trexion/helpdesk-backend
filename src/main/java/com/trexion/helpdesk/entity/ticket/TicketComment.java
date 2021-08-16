@@ -29,5 +29,7 @@ public class TicketComment {
     @Column(nullable = false)
     private String userID;
     @CreationTimestamp
+    @NonNull
+    @Column(nullable = false)
     private LocalDateTime createDateTime;
 }

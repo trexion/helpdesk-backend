@@ -16,8 +16,8 @@ import java.util.stream.Collectors;
 public class TicketService {
     private final TicketRepo ticketRepo;
 
-    public Iterable<Ticket> getAll() {
-        return ticketRepo.findAll();
+    public List<TicketFullDto> getAll() {
+        return ticketRepo.findAll().stream().map(this::mapTicketToDto).collect(Collectors.toList());
     }
 
     public TicketFullDto getTicket(String ticketID) {
@@ -30,6 +30,7 @@ public class TicketService {
                 .subject(ticket.getSubject())
                 .description(ticket.getDescription())
                 .status(ticket.getStatus().getName())
+                .category(ticket.getCategory().getName())
                 .comments(mapCommentsToCommentDto(ticket))
                 .build();
     }
