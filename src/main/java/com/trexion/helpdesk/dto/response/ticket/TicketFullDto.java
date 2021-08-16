@@ -15,6 +15,7 @@ public class TicketFullDto {
     String description;
     String status;
     String category;
+    String priority;
     List<TicketCommentDto> comments;
 
     @Value

@@ -31,6 +31,7 @@ public class TicketService {
                 .description(ticket.getDescription())
                 .status(ticket.getStatus().getName())
                 .category(ticket.getCategory().getName())
+                .priority(ticket.getPriority().getName())
                 .comments(mapCommentsToCommentDto(ticket))
                 .build();
     }
