@@ -28,7 +28,7 @@ public class Ticket {
     @ManyToOne
     private TicketCategory category;
     @NonNull
-    @Column(nullable = false)
+    @ManyToOne
     private TicketPriority priority;
     @NonNull
     @Column(nullable = false, name = "group_id")
