@@ -3,10 +3,7 @@ package com.trexion.helpdesk.entity.user;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.util.UUID;
 
@@ -23,14 +20,10 @@ public class UserAccess {
     @Column(columnDefinition = "VARCHAR(255)")
     @EqualsAndHashCode.Include
     private UUID id;
-    @NonNull
-    @Column(nullable = false,unique = true)
-    private String userName;
-    @NonNull
-    @Column(nullable = false,unique = true)
-    @Email
-    private String email;
-    @NonNull
+    @OneToOne
+    @JoinColumn(name = "userName",referencedColumnName = "userName")
+    private User user;
     @Column(nullable = false)
     private String password;
+
 }
