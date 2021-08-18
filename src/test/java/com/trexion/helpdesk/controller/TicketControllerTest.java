@@ -1,5 +1,6 @@
 package com.trexion.helpdesk.controller;
 
+import com.trexion.helpdesk.controller.ticket.TicketController;
 import com.trexion.helpdesk.service.ticket.TicketService;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.DisplayName;
