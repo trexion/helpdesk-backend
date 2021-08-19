@@ -4,6 +4,8 @@ import com.trexion.helpdesk.entity.ticket.Ticket;
 import com.trexion.helpdesk.entity.ticket.TicketCategory;
 import com.trexion.helpdesk.entity.ticket.TicketComment;
 import com.trexion.helpdesk.entity.ticket.TicketStatus;
+import com.trexion.helpdesk.entity.user.User;
+import com.trexion.helpdesk.entity.user.UserAccess;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
+import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
 import static org.apache.commons.lang3.RandomUtils.nextBoolean;
 import static org.apache.commons.lang3.RandomUtils.nextInt;
 
@@ -87,5 +90,28 @@ public class Entities {
         TicketCategory category = randomTicketCategory();
         category.setId(nextInt());
         return category;
+    }
+
+    public static User randomUser() {
+        return User.builder()
+                .id(UUID.randomUUID())
+                .firstName(randomAlphabetic(10))
+                .lastName(randomAlphabetic(10))
+                .userName(randomAlphanumeric(10))
+                .email(randomAlphabetic(20))
+                .phone(nextInt(100000000,999999999))
+                .image(randomAlphabetic(15))
+                .active(nextBoolean())
+                .createDateTime(LocalDateTime.now())
+                .updateDateTime(LocalDateTime.now())
+                .build();
+    }
+
+    private static UserAccess randomUserAccess(User user) {
+        return UserAccess.builder()
+                .id(user.getId())
+                .password(randomAlphanumeric(8))
+                .user(user)
+                .build();
     }
 }
