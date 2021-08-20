@@ -40,7 +40,7 @@ public class Entities {
             .build();
     }
 
-    public static Ticket randomTicket(User user,User requester, User technician) {
+    public static Ticket randomTicket() {
         return Ticket.builder()
             .id(UUID.randomUUID().toString())
             .subject(randomAlphabetic(20))
@@ -48,9 +48,9 @@ public class Entities {
             .category(randomTicketCategory())
             .priority(randomTicketPriority())
             .groupID(nextInt())
-            .user(user)
-            .requester(requester)
-            .technician(technician)
+            .user(randomUser())
+            .requester(randomUser())
+            .technician(randomUser())
             .createDateTime(LocalDateTime.now())
             .updateDateTime(LocalDateTime.now())
             .status(randomTicketStatus())
@@ -95,6 +95,13 @@ public class Entities {
         return email;
     }
 
+    public static UserAccess randomUserAccess() {
+        return UserAccess.builder()
+            .userName(randomAlphanumeric(10))
+            .password(randomAlphanumeric(8))
+            .build();
+    }
+
     public static User randomUser() {
         return User.builder()
             .firstName(randomAlphabetic(10))
@@ -102,6 +109,7 @@ public class Entities {
             .email(randomEmail())
             .phone(nextInt(100000000, 999999999))
             .image(randomAlphabetic(15))
+            .access(randomUserAccess())
             .active(nextBoolean())
             .createDateTime(LocalDateTime.now())
             .updateDateTime(LocalDateTime.now())
@@ -114,7 +122,7 @@ public class Entities {
         return user;
     }
 
-    public static List<User> randomUsers() {
+    public static List<User> randomUsers(UserAccess access) {
         List<User> users = new ArrayList<>();
         int size = nextInt(5, 10);
         for (int i = 0; i < size; i++)
@@ -150,4 +158,5 @@ public class Entities {
             list.add(randomPersistedTicketPriority());
         return list;
     }
+
 }

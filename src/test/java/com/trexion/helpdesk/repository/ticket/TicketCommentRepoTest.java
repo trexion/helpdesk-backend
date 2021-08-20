@@ -31,10 +31,10 @@ class TicketCommentRepoTest {
 
     @BeforeEach
     void init() {
-        User user = Entities.randomUser();
-        userRepo.save(user);
-        User persistedUser = userRepo.getById(user.getId());
-        newTicket = Entities.randomTicket(persistedUser,persistedUser,persistedUser);
+        newTicket = Entities.randomTicket();
+        userRepo.save(newTicket.getUser());
+        userRepo.save(newTicket.getRequester());
+        userRepo.save(newTicket.getTechnician());
         ticketStatusRepo.save(newTicket.getStatus());
         ticketRepo.save(newTicket);
     }
