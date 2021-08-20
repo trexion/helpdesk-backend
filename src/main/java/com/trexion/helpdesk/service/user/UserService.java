@@ -22,13 +22,14 @@ public class UserService {
 
     private UserFullDto mapToUserFullDto(User user) {
         return UserFullDto.builder()
-                .firstName(user.getFirstName())
-                .lastName(user.getLastName())
-                .email(user.getEmail())
-                .phone(user.getPhone())
-                .image(user.getImage())
-                .createDateTime(user.getCreateDateTime())
-                .updateDateTime(user.getUpdateDateTime())
-                .build();
+            .firstName(user.getFirstName())
+            .lastName(user.getLastName())
+            .userName(user.getAccess().getUserName())
+            .email(user.getEmail())
+            .phone(user.getPhone())
+            .image(user.getImage())
+            .createDateTime(user.getCreateDateTime())
+            .updateDateTime(user.getUpdateDateTime())
+            .build();
     }
 }
