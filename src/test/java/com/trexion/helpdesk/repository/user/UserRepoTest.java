@@ -27,7 +27,6 @@ class UserRepoTest {
         //When
         userRepo.save(user);
         //Then
-        log.info(user.toString());
         assertThat(userRepo.getById(user.getId())).isEqualTo(user);
     }
 }
