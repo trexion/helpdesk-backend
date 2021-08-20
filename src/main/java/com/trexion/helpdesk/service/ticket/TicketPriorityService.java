@@ -26,8 +26,8 @@ public class TicketPriorityService {
 
     private TicketPriorityDto mapToTicketPriorityDto(TicketPriority ticketPriority) {
         return TicketPriorityDto.builder()
-                .id(ticketPriority.getId())
-                .name(ticketPriority.getName())
-                .build();
+            .id(ticketPriority.getId())
+            .name(ticketPriority.getName())
+            .build();
     }
 }

@@ -15,8 +15,8 @@ public class TicketPriorityController {
     private final TicketPriorityService ticketPriorityService;
 
     @GetMapping
-    public ResponseEntity getTicket(@RequestParam(required = false) Integer id){
-        if(id==null)
+    public ResponseEntity getTicket(@RequestParam(required = false) Integer id) {
+        if (id == null)
             return ResponseEntity.ok(ticketPriorityService.getAll());
         else
             return ResponseEntity.ok(ticketPriorityService.getPriority(id));

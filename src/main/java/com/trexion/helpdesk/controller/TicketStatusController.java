@@ -1,6 +1,5 @@
 package com.trexion.helpdesk.controller;
 
-import com.trexion.helpdesk.entity.ticket.TicketStatus;
 import com.trexion.helpdesk.service.ticket.TicketStatusService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +15,8 @@ public class TicketStatusController {
     private final TicketStatusService ticketStatusService;
 
     @GetMapping
-    public ResponseEntity getTicket(@RequestParam(required = false) Integer id){
-        if(id==null)
+    public ResponseEntity getTicket(@RequestParam(required = false) Integer id) {
+        if (id == null)
             return ResponseEntity.ok(ticketStatusService.getAll());
         else
             return ResponseEntity.ok(ticketStatusService.getStatus(id));

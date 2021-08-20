@@ -1,6 +1,5 @@
 package com.trexion.helpdesk.dto.response.ticket;
 
-import com.trexion.helpdesk.entity.ticket.TicketCategory;
 import lombok.Builder;
 import lombok.Value;
 

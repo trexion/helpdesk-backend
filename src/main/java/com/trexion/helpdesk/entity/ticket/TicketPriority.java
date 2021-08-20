@@ -10,7 +10,8 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)public class TicketPriority {
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+public class TicketPriority {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
