@@ -24,7 +24,6 @@ public class UserService {
         return UserFullDto.builder()
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
-                .userName(user.getUserName())
                 .email(user.getEmail())
                 .phone(user.getPhone())
                 .image(user.getImage())

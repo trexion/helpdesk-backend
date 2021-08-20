@@ -20,9 +20,11 @@ public class UserAccess {
     @Column(columnDefinition = "VARCHAR(255)")
     @EqualsAndHashCode.Include
     private UUID id;
-    @OneToOne
-    @JoinColumn(name = "userName",referencedColumnName = "userName")
-    private User user;
+    @NonNull
+    @Column(nullable = false)
+    private String userName;
     @Column(nullable = false)
     private String password;
+    @OneToOne(mappedBy = "access")
+    private User user;
 }

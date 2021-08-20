@@ -96,7 +96,6 @@ public class Entities {
         return User.builder()
                 .firstName(randomAlphabetic(10))
                 .lastName(randomAlphabetic(10))
-                .userName(randomAlphanumeric(10))
                 .email(randomAlphabetic(20))
                 .phone(nextInt(100000000,999999999))
                 .image(randomAlphabetic(15))
@@ -122,7 +121,6 @@ public class Entities {
 
     private static UserAccess randomUserAccess(User user) {
         return UserAccess.builder()
-                .id(user.getId())
                 .password(randomAlphanumeric(8))
                 .user(user)
                 .build();

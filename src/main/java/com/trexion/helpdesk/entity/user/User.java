@@ -31,9 +31,6 @@ public class User {
     private String lastName;
     @NonNull
     @Column(nullable = false,unique = true)
-    private String userName;
-    @NonNull
-    @Column(nullable = false,unique = true)
     @Email
     private String email;
     @NonNull
@@ -41,7 +38,8 @@ public class User {
     private Integer phone;
     @NonNull
     private String image;
-    @OneToOne(mappedBy = "user")
+    @OneToOne
+    @JoinColumn(name = "accessId")
     private UserAccess access;
     @Builder.Default
     @Column(nullable = false, columnDefinition = "boolean default true")
