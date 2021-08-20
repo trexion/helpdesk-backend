@@ -26,18 +26,19 @@ public class TicketService {
 
     private TicketFullDto mapTicketToDto(Ticket ticket) {
         return TicketFullDto.builder()
-                .id(ticket.getId())
-                .subject(ticket.getSubject())
-                .description(ticket.getDescription())
-                .status(ticket.getStatus().getName())
-                .category(ticket.getCategory().getName())
-                .comments(mapCommentsToCommentDto(ticket))
-                .build();
+            .id(ticket.getId())
+            .subject(ticket.getSubject())
+            .description(ticket.getDescription())
+            .status(ticket.getStatus().getName())
+            .category(ticket.getCategory().getName())
+            .priority(ticket.getPriority().getName())
+            .comments(mapCommentsToCommentDto(ticket))
+            .build();
     }
 
     private List<TicketFullDto.TicketCommentDto> mapCommentsToCommentDto(Ticket ticket) {
         return ticket.getComments().stream()
-                .map(v -> new TicketFullDto.TicketCommentDto(v.getComment(), v.getUserID(), v.getCreateDateTime()))
-                .collect(Collectors.toList());
+            .map(v -> new TicketFullDto.TicketCommentDto(v.getComment(), v.getUserID(), v.getCreateDateTime()))
+            .collect(Collectors.toList());
     }
 }

@@ -26,9 +26,9 @@ public class TicketCategoryService {
 
     private TicketCategoryDto mapToTicketCategoryDto(TicketCategory ticketCategory) {
         return TicketCategoryDto.builder()
-                .id(ticketCategory.getId())
-                .name(ticketCategory.getName())
-                .children(ticketCategory.getChildren().stream().map(this::mapToTicketCategoryDto).collect(Collectors.toList()))
-                .build();
+            .id(ticketCategory.getId())
+            .name(ticketCategory.getName())
+            .children(ticketCategory.getChildren().stream().map(this::mapToTicketCategoryDto).collect(Collectors.toList()))
+            .build();
     }
 }

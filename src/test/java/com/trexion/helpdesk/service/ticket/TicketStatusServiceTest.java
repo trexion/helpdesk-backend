@@ -28,13 +28,13 @@ class TicketStatusServiceTest {
     @DisplayName("getAll should map all ticket status entities to DTOs")
     void getAll() {
         //Given
-        List<TicketStatus> tickets = Entities.randomTicketStatuses();
-        when(repo.findAll()).thenReturn(tickets);
+        List<TicketStatus> statuses = Entities.randomTicketStatuses();
+        when(repo.findAll()).thenReturn(statuses);
 
         //When
         List<TicketStatusDto> result = service.getAll();
 
         //Then
-        assertThat(result).isNotEmpty().hasSize(tickets.size());
+        assertThat(result).isNotEmpty().hasSize(statuses.size());
     }
 }

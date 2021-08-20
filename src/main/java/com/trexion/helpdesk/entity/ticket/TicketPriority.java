@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class TicketStatus {
+public class TicketPriority {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +23,6 @@ public class TicketStatus {
     @Builder.Default
     @Column(nullable = false, columnDefinition = "boolean default true")
     private boolean active = true;
-    @OneToMany(mappedBy = "status")
+    @OneToMany(mappedBy = "priority")
     private List<Ticket> tickets;
 }
