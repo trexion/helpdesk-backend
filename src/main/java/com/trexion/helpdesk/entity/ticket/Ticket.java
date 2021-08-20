@@ -28,8 +28,8 @@ public class Ticket {
     @ManyToOne
     private TicketCategory category;
     @NonNull
-    @Column(nullable = false, name = "priority_id")
-    private Integer priorityID;
+    @ManyToOne
+    private TicketPriority priority;
     @NonNull
     @Column(nullable = false, name = "group_id")
     private Integer groupID;

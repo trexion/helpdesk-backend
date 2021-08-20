@@ -1,9 +1,6 @@
 package com.trexion.helpdesk;
 
-import com.trexion.helpdesk.entity.ticket.Ticket;
-import com.trexion.helpdesk.entity.ticket.TicketCategory;
-import com.trexion.helpdesk.entity.ticket.TicketComment;
-import com.trexion.helpdesk.entity.ticket.TicketStatus;
+import com.trexion.helpdesk.entity.ticket.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -46,7 +43,7 @@ public class Entities {
                 .subject(randomAlphabetic(20))
                 .description(randomAlphabetic(20, 1000))
                 .category(randomTicketCategory())
-                .priorityID(nextInt())
+                .priority(randomTicketPriority())
                 .groupID(nextInt())
                 .userID(randomAlphabetic(20))
                 .createDateTime(LocalDateTime.now())
@@ -83,9 +80,31 @@ public class Entities {
         return list;
     }
 
-    private static TicketCategory randomPersistedTicketCategory() {
+    public static TicketCategory randomPersistedTicketCategory() {
         TicketCategory category = randomTicketCategory();
         category.setId(nextInt());
         return category;
+    }
+
+    public static TicketPriority randomTicketPriority(){
+        return TicketPriority.builder()
+                .name(randomAlphabetic(10))
+                .active(nextBoolean())
+                .tickets(Collections.emptyList())
+                .build();
+    }
+
+    public static TicketPriority randomPersistedTicketPriority(){
+        TicketPriority priority = randomTicketPriority();
+        priority.setId(nextInt());
+        return priority;
+    }
+
+    public static List<TicketPriority> randomTicketPriorities(){
+        List<TicketPriority> list = new ArrayList<>();
+        int size = nextInt(5, 10);
+        for (int i = 0; i < size; i++)
+            list.add(randomPersistedTicketPriority());
+        return list;
     }
 }
