@@ -1,5 +1,6 @@
 package com.trexion.helpdesk.entity.user;
 
+import com.trexion.helpdesk.entity.ticket.Ticket;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
@@ -8,6 +9,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -41,6 +43,12 @@ public class User {
     @OneToOne
     @JoinColumn(name = "accessId")
     private UserAccess access;
+    @OneToMany(mappedBy = "user")
+    private List<Ticket> myTickets;
+    @OneToMany(mappedBy = "requester")
+    private List<Ticket> requestedTickets;
+    @OneToMany(mappedBy = "technician")
+    private List<Ticket> technicianTickets;
     @Builder.Default
     @Column(nullable = false, columnDefinition = "boolean default true")
     private boolean active = true;
