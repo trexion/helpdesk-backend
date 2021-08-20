@@ -94,7 +94,6 @@ public class Entities {
 
     public static User randomUser() {
         return User.builder()
-                .id(UUID.randomUUID())
                 .firstName(randomAlphabetic(10))
                 .lastName(randomAlphabetic(10))
                 .userName(randomAlphanumeric(10))
@@ -105,6 +104,20 @@ public class Entities {
                 .createDateTime(LocalDateTime.now())
                 .updateDateTime(LocalDateTime.now())
                 .build();
+    }
+
+    public static User randomPersistedUser(){
+        User user = randomUser();
+        user.setId(UUID.randomUUID());
+        return user;
+    }
+
+    public static List<User> randomUsers(){
+        List<User> users = new ArrayList<>();
+        int size = nextInt(5, 10);
+        for (int i = 0; i < size; i++)
+            users.add(randomPersistedUser());
+        return users;
     }
 
     private static UserAccess randomUserAccess(User user) {

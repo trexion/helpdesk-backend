@@ -2,6 +2,7 @@ package com.trexion.helpdesk.repository.user;
 
 import com.trexion.helpdesk.Entities;
 import com.trexion.helpdesk.entity.user.User;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @ActiveProfiles("test")
+@Slf4j
 class UserRepoTest {
+
     @Autowired
     private UserRepo userRepo;
 
@@ -24,7 +27,7 @@ class UserRepoTest {
         //When
         userRepo.save(user);
         //Then
-        System.out.println(user.toString());
+        log.info(user.toString());
         assertThat(userRepo.getById(user.getId())).isEqualTo(user);
     }
 }
