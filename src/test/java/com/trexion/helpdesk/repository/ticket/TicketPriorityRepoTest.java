@@ -26,6 +26,6 @@ class TicketPriorityRepoTest {
         ticketPriorityRepo.save(ticketPriority);
 
         //Then
-        assertThat(ticketPriorityRepo.getById(ticketPriority.getId())).isEqualTo(ticketPriority);
+        assertThat(ticketPriorityRepo.getById(ticketPriority.getId())).isNotNull().isEqualTo(ticketPriority);
     }
 }
