@@ -130,13 +130,6 @@ public class Entities {
         return users;
     }
 
-    private static UserAccess randomUserAccess(User user) {
-        return UserAccess.builder()
-            .password(randomAlphanumeric(8))
-            .user(user)
-            .build();
-    }
-
     public static TicketPriority randomTicketPriority() {
         return TicketPriority.builder()
             .name(randomAlphabetic(10))

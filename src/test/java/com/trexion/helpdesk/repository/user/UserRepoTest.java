@@ -27,6 +27,7 @@ class UserRepoTest {
     void save_() {
         //Given
         User user = Entities.randomUser();
+        userAccessRepo.save(user.getAccess());
         //When
         userRepo.save(user);
         //Then
