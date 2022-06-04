@@ -38,7 +38,7 @@ public class TicketService {
 
     private List<TicketFullDto.TicketCommentDto> mapCommentsToCommentDto(Ticket ticket) {
         return ticket.getComments().stream()
-            .map(v -> new TicketFullDto.TicketCommentDto(v.getComment(), v.getUserID(), v.getCreateDateTime()))
+            .map(v -> new TicketFullDto.TicketCommentDto(v.getComment(), v.getUserAccess().getUserName(), v.getCreateDateTime()))
             .collect(Collectors.toList());
     }
 }

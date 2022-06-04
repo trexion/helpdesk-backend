@@ -58,10 +58,9 @@ public class Ticket {
     private LocalDateTime updateDateTime;
     @NonNull
     @ManyToOne
-    @JoinColumn(nullable = false, name = "status_id", referencedColumnName = "id")
+    @JoinColumn(nullable = false, name = "status_id")
     @ToString.Exclude
     private TicketStatus status;
     @OneToMany(mappedBy = "ticket")
-    @Singular
     private List<TicketComment> comments;
 }

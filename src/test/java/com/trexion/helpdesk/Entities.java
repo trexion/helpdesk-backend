@@ -34,7 +34,7 @@ public class Entities {
         return TicketComment.builder()
             .id(nextInt())
             .comment(randomAlphabetic(20))
-            .userID(randomAlphabetic(5))
+            .userAccess(randomUserAccess())
             .createDateTime(LocalDateTime.now())
             .ticket(ticket)
             .build();

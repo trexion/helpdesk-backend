@@ -4,6 +4,7 @@ import com.trexion.helpdesk.entity.group.AccessGroup;
 import com.trexion.helpdesk.entity.group.GroupAdmin;
 import com.trexion.helpdesk.entity.role.AccessRole;
 import com.trexion.helpdesk.entity.role.RoleAdmin;
+import com.trexion.helpdesk.entity.ticket.TicketComment;
 import com.trexion.helpdesk.entity.user.user.User;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -53,4 +54,6 @@ public class UserAccess {
     private List<AccessGroup> groups;
     @OneToMany(mappedBy = "userAccess")
     private List<GroupAdmin> groupAdmins;
+    @OneToMany(mappedBy = "userAccess")
+    private List<TicketComment> ticketComments;
 }
