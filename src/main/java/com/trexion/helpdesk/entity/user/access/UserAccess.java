@@ -1,5 +1,7 @@
 package com.trexion.helpdesk.entity.user.access;
 
+import com.trexion.helpdesk.entity.group.AccessGroup;
+import com.trexion.helpdesk.entity.group.GroupAdmin;
 import com.trexion.helpdesk.entity.role.AccessRole;
 import com.trexion.helpdesk.entity.role.RoleAdmin;
 import com.trexion.helpdesk.entity.user.user.User;
@@ -47,4 +49,8 @@ public class UserAccess {
     private List<AccessRole> roles;
     @OneToMany(mappedBy = "userAccess")
     private List<RoleAdmin> roleAdmins;
+    @OneToMany(mappedBy = "userAccess")
+    private List<AccessGroup> groups;
+    @OneToMany(mappedBy = "userAccess")
+    private List<GroupAdmin> groupAdmins;
 }

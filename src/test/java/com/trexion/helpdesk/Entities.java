@@ -47,7 +47,6 @@ public class Entities {
             .description(randomAlphabetic(20, 1000))
             .category(randomTicketCategory())
             .priority(randomTicketPriority())
-            .groupID(nextInt())
             .user(randomUser())
             .requester(randomUser())
             .technician(randomUser())
