@@ -110,7 +110,6 @@ public class Entities {
             .phone(nextInt(100000000, 999999999))
             .image(randomAlphabetic(15))
             .access(randomUserAccess())
-            .active(nextBoolean())
             .createDateTime(LocalDateTime.now())
             .updateDateTime(LocalDateTime.now())
             .build();

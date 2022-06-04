@@ -49,9 +49,8 @@ public class User {
     private List<Ticket> requestedTickets;
     @OneToMany(mappedBy = "technician")
     private List<Ticket> technicianTickets;
-    @Builder.Default
-    @Column(nullable = false, columnDefinition = "boolean default true")
-    private boolean active = true;
+    @ManyToOne
+    private UserStatus userStatus;
     @CreationTimestamp
     @NonNull
     @Column(nullable = false)

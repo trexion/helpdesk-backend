@@ -16,8 +16,8 @@ import java.util.stream.Collectors;
 public class UserService {
     private final UserRepo userRepo;
 
-    public List<UserFullDto> getAllActive() {
-        return userRepo.findAllByActiveIsTrue().stream().map(this::mapToUserFullDto).collect(Collectors.toList());
+    public List<UserFullDto> getAll() {
+        return userRepo.findAll().stream().map(this::mapToUserFullDto).collect(Collectors.toList());
     }
 
     private UserFullDto mapToUserFullDto(User user) {
