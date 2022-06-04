@@ -16,6 +16,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @Data
+@Table(name = "user_group")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Group {
     @Id
@@ -29,7 +30,7 @@ public class Group {
     @Column(nullable = false)
     private String description;
     @Builder.Default
-    @Column(nullable = false, columnDefinition = "boolean default true")
+    @Column(columnDefinition = "boolean default true")
     private boolean active = true;
     @CreationTimestamp
     @NonNull
