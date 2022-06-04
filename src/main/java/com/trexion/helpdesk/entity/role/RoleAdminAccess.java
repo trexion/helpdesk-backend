@@ -14,17 +14,15 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Role {
+public class RoleAdminAccess {
     @Id
+    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Integer id;
     @NonNull
     @Column(nullable = false)
     private String name;
-    @NonNull
-    @Column(nullable = false)
-    private String description;
     @Builder.Default
     @Column(nullable = false, columnDefinition = "boolean default true")
     private boolean active = true;
@@ -36,8 +34,6 @@ public class Role {
     @NonNull
     @Column(nullable = false)
     private LocalDateTime updateDateTime;
-    @OneToMany(mappedBy = "role")
-    private List<AccessRole> userAccesses;
-    @OneToMany(mappedBy = "role")
+    @OneToMany(mappedBy = "access")
     private List<RoleAdmin> roleAdmins;
 }

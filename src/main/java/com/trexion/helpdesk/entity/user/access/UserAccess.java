@@ -1,6 +1,7 @@
 package com.trexion.helpdesk.entity.user.access;
 
 import com.trexion.helpdesk.entity.role.AccessRole;
+import com.trexion.helpdesk.entity.role.RoleAdmin;
 import com.trexion.helpdesk.entity.user.user.User;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -44,4 +45,6 @@ public class UserAccess {
     private AccessStatus status;
     @OneToMany(mappedBy = "userAccess")
     private List<AccessRole> roles;
+    @OneToMany(mappedBy = "userAccess")
+    private List<RoleAdmin> roleAdmins;
 }
