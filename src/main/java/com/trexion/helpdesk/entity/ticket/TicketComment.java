@@ -1,5 +1,6 @@
 package com.trexion.helpdesk.entity.ticket;
 
+import com.trexion.helpdesk.entity.user.access.UserAccess;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -22,11 +23,11 @@ public class TicketComment {
     private String comment;
     @NonNull
     @ManyToOne
-    @JoinColumn(nullable = false, name = "ticket_id", referencedColumnName = "id")
+    @JoinColumn(nullable = false, name = "ticket_id")
     private Ticket ticket;
-    @NonNull
-    @Column(nullable = false)
-    private String userID;
+    @ManyToOne
+    @JoinColumn(nullable = false, name = "user_access_id")
+    private UserAccess userAccess;
     @CreationTimestamp
     @NonNull
     @Column(nullable = false)

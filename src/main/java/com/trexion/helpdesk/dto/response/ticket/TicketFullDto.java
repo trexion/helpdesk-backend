@@ -20,7 +20,7 @@ public class TicketFullDto {
     @Value
     public static class TicketCommentDto {
         String comment;
-        String userID;
+        String userName;
         LocalDateTime createDateTime;
     }
 }
