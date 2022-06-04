@@ -1,5 +1,6 @@
 package com.trexion.helpdesk.entity.user.access;
 
+import com.trexion.helpdesk.entity.role.AccessRole;
 import com.trexion.helpdesk.entity.user.user.User;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -8,6 +9,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -40,4 +42,6 @@ public class UserAccess {
     private User user;
     @ManyToOne
     private AccessStatus status;
+    @OneToMany(mappedBy = "userAccess")
+    private List<AccessRole> roles;
 }
