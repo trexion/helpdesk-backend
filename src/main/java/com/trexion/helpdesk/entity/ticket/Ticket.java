@@ -1,5 +1,6 @@
 package com.trexion.helpdesk.entity.ticket;
 
+import com.trexion.helpdesk.entity.configuration_item.ConfigurationItem;
 import com.trexion.helpdesk.entity.group.Group;
 import com.trexion.helpdesk.entity.user.user.User;
 import lombok.*;
@@ -48,6 +49,9 @@ public class Ticket {
     @ManyToOne
     @JoinColumn(name = "group_id")
     private Group group;
+    @ManyToOne
+    @JoinColumn(name = "configuration_item_id")
+    private ConfigurationItem configurationItem;
     @CreationTimestamp
     @NonNull
     @Column(nullable = false)
