@@ -1,5 +1,6 @@
 package com.trexion.helpdesk.entity.ticket;
 
+import com.trexion.helpdesk.entity.group.Group;
 import com.trexion.helpdesk.entity.user.user.User;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -27,24 +28,26 @@ public class Ticket {
     private String description;
     @NonNull
     @ManyToOne
+    @JoinColumn(name = "category_id")
     private TicketCategory category;
     @NonNull
     @ManyToOne
+    @JoinColumn(name = "priority_id")
     private TicketPriority priority;
     @NonNull
-    @Column(nullable = false, name = "group_id")
-    private Integer groupID;
-    @NonNull
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(nullable = false, name = "user_id")
     private User user;
     @NonNull
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(nullable = false, name = "requester_id")
     private User requester;
     @ManyToOne
-    @JoinColumn()
+    @JoinColumn(name = "technician_id")
     private User technician;
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    private Group group;
     @CreationTimestamp
     @NonNull
     @Column(nullable = false)
