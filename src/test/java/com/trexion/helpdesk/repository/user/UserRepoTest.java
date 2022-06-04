@@ -1,8 +1,10 @@
-package com.trexion.helpdesk.repository.ticket;
+package com.trexion.helpdesk.repository.user;
 
 import com.trexion.helpdesk.Entities;
-import com.trexion.helpdesk.entity.ticket.Ticket;
+import com.trexion.helpdesk.entity.user.user.User;
+import com.trexion.helpdesk.repository.user.access.UserAccessRepo;
 import com.trexion.helpdesk.repository.user.user.UserRepo;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,29 +15,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @ActiveProfiles("test")
-class TicketRepoTest {
+@Slf4j
+class UserRepoTest {
 
     @Autowired
-    private TicketRepo repo;
-    @Autowired
-    private TicketStatusRepo ticketStatusRepo;
-    @Autowired
     private UserRepo userRepo;
+    @Autowired
+    private UserAccessRepo userAccessRepo;
 
     @Test
     @DisplayName("save should persist a given unpersisted entity")
     void save_() {
         //Given
-        Ticket ticket = Entities.randomTicket();
-        userRepo.save(ticket.getUser());
-        userRepo.save(ticket.getRequester());
-        userRepo.save(ticket.getTechnician());
-        ticketStatusRepo.save(ticket.getStatus());
-
+        User user = Entities.randomUser();
+        userAccessRepo.save(user.getAccess());
         //When
-        repo.save(ticket);
-
+        userRepo.save(user);
         //Then
-        assertThat(repo.getById(ticket.getId())).isEqualTo(ticket);
+        assertThat(userRepo.getById(user.getId())).isEqualTo(user);
     }
 }

@@ -1,4 +1,4 @@
-package com.trexion.helpdesk.controller;
+package com.trexion.helpdesk.controller.ticket;
 
 import com.trexion.helpdesk.service.ticket.TicketStatusService;
 import lombok.RequiredArgsConstructor;
