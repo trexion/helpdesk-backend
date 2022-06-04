@@ -1,7 +1,7 @@
 package com.trexion.helpdesk.service.user;
 
 import com.trexion.helpdesk.dto.response.user.UserFullDto;
-import com.trexion.helpdesk.entity.user.User;
+import com.trexion.helpdesk.entity.user.user.User;
 import com.trexion.helpdesk.repository.user.UserRepo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

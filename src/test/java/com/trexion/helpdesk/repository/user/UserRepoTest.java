@@ -1,8 +1,7 @@
 package com.trexion.helpdesk.repository.user;
 
 import com.trexion.helpdesk.Entities;
-import com.trexion.helpdesk.entity.user.User;
-import com.trexion.helpdesk.entity.user.UserAccess;
+import com.trexion.helpdesk.entity.user.user.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

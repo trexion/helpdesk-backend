@@ -1,15 +1,13 @@
-package com.trexion.helpdesk.entity.user;
+package com.trexion.helpdesk.entity.user.access;
 
-import com.trexion.helpdesk.entity.ticket.Ticket;
+import com.trexion.helpdesk.entity.user.user.User;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -18,7 +16,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class User {
+public class UserAccess {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
@@ -27,30 +25,9 @@ public class User {
     private UUID id;
     @NonNull
     @Column(nullable = false)
-    private String firstName;
-    @NonNull
+    private String userName;
     @Column(nullable = false)
-    private String lastName;
-    @NonNull
-    @Column(nullable = false,unique = true)
-    @Email
-    private String email;
-    @NonNull
-    @Column(nullable = false)
-    private Integer phone;
-    @NonNull
-    private String image;
-    @OneToOne
-    @JoinColumn(name = "accessId")
-    private UserAccess access;
-    @OneToMany(mappedBy = "user")
-    private List<Ticket> myTickets;
-    @OneToMany(mappedBy = "requester")
-    private List<Ticket> requestedTickets;
-    @OneToMany(mappedBy = "technician")
-    private List<Ticket> technicianTickets;
-    @ManyToOne
-    private UserStatus userStatus;
+    private String password;
     @CreationTimestamp
     @NonNull
     @Column(nullable = false)
@@ -59,4 +36,8 @@ public class User {
     @NonNull
     @Column(nullable = false)
     private LocalDateTime updateDateTime;
+    @OneToOne(mappedBy = "access")
+    private User user;
+    @ManyToOne
+    private AccessStatus status;
 }

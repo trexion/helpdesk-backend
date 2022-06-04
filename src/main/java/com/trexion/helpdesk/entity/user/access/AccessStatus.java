@@ -1,4 +1,4 @@
-package com.trexion.helpdesk.entity.user;
+package com.trexion.helpdesk.entity.user.access;
 
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class UserStatus {
+public class AccessStatus {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,6 +34,6 @@ public class UserStatus {
     @NonNull
     @Column(nullable = false)
     private LocalDateTime updateDateTime;
-    @OneToMany(mappedBy = "userStatus")
-    private List<User> users;
+    @OneToMany(mappedBy = "status")
+    private List<UserAccess> userAccesses;
 }

@@ -1,8 +1,8 @@
 package com.trexion.helpdesk;
 
 import com.trexion.helpdesk.entity.ticket.*;
-import com.trexion.helpdesk.entity.user.User;
-import com.trexion.helpdesk.entity.user.UserAccess;
+import com.trexion.helpdesk.entity.user.user.User;
+import com.trexion.helpdesk.entity.user.access.UserAccess;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

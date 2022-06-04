@@ -1,6 +1,6 @@
 package com.trexion.helpdesk.entity.ticket;
 
-import com.trexion.helpdesk.entity.user.User;
+import com.trexion.helpdesk.entity.user.user.User;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
