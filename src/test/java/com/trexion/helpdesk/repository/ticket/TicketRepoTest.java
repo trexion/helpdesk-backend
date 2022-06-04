@@ -2,7 +2,7 @@ package com.trexion.helpdesk.repository.ticket;
 
 import com.trexion.helpdesk.Entities;
 import com.trexion.helpdesk.entity.ticket.Ticket;
-import com.trexion.helpdesk.repository.user.UserRepo;
+import com.trexion.helpdesk.repository.user.user.UserRepo;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

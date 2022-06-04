@@ -1,4 +1,4 @@
-package com.trexion.helpdesk.repository.user;
+package com.trexion.helpdesk.repository.user.user;
 
 import com.trexion.helpdesk.entity.user.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
