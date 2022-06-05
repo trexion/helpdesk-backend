@@ -20,7 +20,7 @@ public class TicketService {
         return ticketRepo.findAll().stream().map(this::mapTicketToDto).collect(Collectors.toList());
     }
 
-    public TicketFullDto getTicket(String ticketID) {
+    public TicketFullDto getTicket(Long ticketID) {
         return mapTicketToDto(ticketRepo.getById(ticketID));
     }
 

@@ -9,7 +9,7 @@ import java.util.List;
 @Value
 @Builder
 public class TicketFullDto {
-    String id;
+    Long id;
     String subject;
     String description;
     String status;

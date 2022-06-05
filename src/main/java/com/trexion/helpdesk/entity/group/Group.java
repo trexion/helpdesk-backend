@@ -17,7 +17,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @Data
-@Table(name = "user_group")
+@Table(name = "user_group", uniqueConstraints = {@UniqueConstraint(name = "uniqueName", columnNames = {"name"})})
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Group {
     @Id

@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Table(uniqueConstraints = {@UniqueConstraint(name = "uniqueUserRole", columnNames = {"user_access_id", "role_id"})})
 public class AccessRole {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

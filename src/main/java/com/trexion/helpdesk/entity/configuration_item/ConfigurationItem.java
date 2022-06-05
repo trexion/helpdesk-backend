@@ -16,6 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Table(uniqueConstraints = {@UniqueConstraint(name = "uniqueName", columnNames = {"name"})})
 public class ConfigurationItem {
     @Id
     @Column
@@ -25,6 +26,9 @@ public class ConfigurationItem {
     @NonNull
     @Column(nullable = false)
     private String name;
+    @NonNull
+    @Column(nullable = false)
+    private String description;
     @Builder.Default
     @Column(nullable = false, columnDefinition = "boolean default true")
     private boolean active = true;

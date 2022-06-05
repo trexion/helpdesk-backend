@@ -1,6 +1,5 @@
 package com.trexion.helpdesk.entity.user.user;
 
-import com.trexion.helpdesk.entity.user.user.User;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -15,6 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Table(uniqueConstraints = {@UniqueConstraint(name = "uniqueName", columnNames = {"name"})})
 public class UserStatus {
     @Id
     @Column
