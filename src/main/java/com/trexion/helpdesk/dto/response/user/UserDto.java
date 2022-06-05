@@ -12,6 +12,6 @@ public class UserDto {
     String email;
     Integer phone;
     String userStatus;
-    String accountStatus;
+    String accessStatus;
     String image;
 }

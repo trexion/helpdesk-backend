@@ -15,7 +15,7 @@ public class UserAccessDto {
     String email;
     Integer phone;
     String userStatus;
-    String accountStatus;
+    String accessStatus;
     String image;
     List<String> roles;
     List<String> groups;

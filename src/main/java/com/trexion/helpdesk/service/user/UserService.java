@@ -29,7 +29,7 @@ public class UserService {
             .email(user.getEmail())
             .phone(user.getPhone())
             .userStatus(user.getUserStatus().getName())
-            .accountStatus(user.getAccess().getStatus().getName())
+            .accessStatus(user.getAccess().getStatus().getName())
             .roles(user.getAccess().getRoles().stream().map(x -> x.getRole().getName()).collect(Collectors.toList()))
             .groups(user.getAccess().getGroups().stream().map(x -> x.getGroup().getName()).collect(Collectors.toList()))
             .image(user.getImage())
@@ -50,7 +50,7 @@ public class UserService {
             .email(user.getEmail())
             .phone(user.getPhone())
             .userStatus(user.getUserStatus().getName())
-            .accountStatus(user.getAccess().getStatus().getName())
+            .accessStatus(user.getAccess().getStatus().getName())
             .image(user.getImage())
             .build();
     }
