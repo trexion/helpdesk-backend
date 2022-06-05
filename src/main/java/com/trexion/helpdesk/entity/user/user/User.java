@@ -4,14 +4,12 @@ import com.trexion.helpdesk.entity.ticket.Ticket;
 import com.trexion.helpdesk.entity.user.access.UserAccess;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @NoArgsConstructor
@@ -19,13 +17,13 @@ import java.util.UUID;
 @AllArgsConstructor
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Table(uniqueConstraints = {@UniqueConstraint(name = "uniqueEmail", columnNames = {"email"})})
 public class User {
     @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(columnDefinition = "VARCHAR(255)")
+    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private UUID id;
+    private Long id;
     @NonNull
     @Column(nullable = false)
     private String firstName;
@@ -33,7 +31,7 @@ public class User {
     @Column(nullable = false)
     private String lastName;
     @NonNull
-    @Column(nullable = false,unique = true)
+    @Column(nullable = false)
     @Email
     private String email;
     @NonNull

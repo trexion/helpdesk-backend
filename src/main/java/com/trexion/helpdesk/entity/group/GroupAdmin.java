@@ -1,7 +1,5 @@
 package com.trexion.helpdesk.entity.group;
 
-import com.trexion.helpdesk.entity.role.Role;
-import com.trexion.helpdesk.entity.role.RoleAdminAccess;
 import com.trexion.helpdesk.entity.user.access.UserAccess;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -16,19 +14,12 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Table(uniqueConstraints = {@UniqueConstraint(name = "uniqueGroupAdmin", columnNames = {"group_id", "user_access_id", "access_id"})})
 public class GroupAdmin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Integer id;
-    @NonNull
-    @Column(nullable = false)
-    private String name;
-    @NonNull
-    @Column(nullable = false)
-    private String description;
-    @Builder.Default
-    @Column(nullable = false, columnDefinition = "boolean default true")
     private boolean active = true;
     @CreationTimestamp
     @NonNull

@@ -12,8 +12,7 @@ import java.util.UUID;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
-import static org.apache.commons.lang3.RandomUtils.nextBoolean;
-import static org.apache.commons.lang3.RandomUtils.nextInt;
+import static org.apache.commons.lang3.RandomUtils.*;
 
 public class Entities {
     public static TicketStatus randomPersistedTicketStatus() {
@@ -42,7 +41,7 @@ public class Entities {
 
     public static Ticket randomTicket() {
         return Ticket.builder()
-            .id(UUID.randomUUID().toString())
+            .id(nextLong())
             .subject(randomAlphabetic(20))
             .description(randomAlphabetic(20, 1000))
             .category(randomTicketCategory())
@@ -116,7 +115,7 @@ public class Entities {
 
     public static User randomPersistedUser() {
         User user = randomUser();
-        user.setId(UUID.randomUUID());
+        user.setId(nextLong());
         return user;
     }
 

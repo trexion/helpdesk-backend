@@ -14,6 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Table(uniqueConstraints = {@UniqueConstraint(name = "uniqueName", columnNames = {"name"})})
 public class RoleAdminAccess {
     @Id
     @Column
@@ -23,6 +24,9 @@ public class RoleAdminAccess {
     @NonNull
     @Column(nullable = false)
     private String name;
+    @NonNull
+    @Column(nullable = false)
+    private String description;
     @Builder.Default
     @Column(nullable = false, columnDefinition = "boolean default true")
     private boolean active = true;

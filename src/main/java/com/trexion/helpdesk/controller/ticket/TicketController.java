@@ -15,7 +15,7 @@ public class TicketController {
     private final TicketService ticketService;
 
     @GetMapping
-    public ResponseEntity getTicket(@RequestParam(required = false) String id) {
+    public ResponseEntity getTicket(@RequestParam(required = false) Long id) {
         if (id == null)
             return ResponseEntity.ok(ticketService.getAll());
         else

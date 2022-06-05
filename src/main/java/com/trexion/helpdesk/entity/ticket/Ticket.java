@@ -19,8 +19,10 @@ import java.util.List;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Ticket {
     @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private String id;
+    private Long id;
     @NonNull
     @Column(nullable = false)
     private String subject;
