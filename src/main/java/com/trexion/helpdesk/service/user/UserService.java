@@ -1,6 +1,7 @@
 package com.trexion.helpdesk.service.user;
 
 import com.trexion.helpdesk.dto.response.user.UserAccessDto;
+import com.trexion.helpdesk.dto.response.user.UserDto;
 import com.trexion.helpdesk.entity.user.user.User;
 import com.trexion.helpdesk.repository.user.user.UserRepo;
 import lombok.RequiredArgsConstructor;
@@ -34,6 +35,23 @@ public class UserService {
             .image(user.getImage())
             .createDateTime(user.getCreateDateTime())
             .updateDateTime(user.getUpdateDateTime())
+            .build();
+    }
+
+    public List<UserDto> getAllUsers(){
+        return userRepo.findAll().stream().map(this::mapToUserDto).collect(Collectors.toList());
+    }
+
+    private UserDto mapToUserDto(User user){
+        return UserDto.builder()
+            .firstName(user.getFirstName())
+            .lastName(user.getLastName())
+            .userName(user.getAccess().getUserName())
+            .email(user.getEmail())
+            .phone(user.getPhone())
+            .userStatus(user.getUserStatus().getName())
+            .accountStatus(user.getAccess().getStatus().getName())
+            .image(user.getImage())
             .build();
     }
 }

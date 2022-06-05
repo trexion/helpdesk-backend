@@ -13,8 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     private final UserService userService;
 
+    @GetMapping("/access")
+    public ResponseEntity getUsersAccess(){
+        return ResponseEntity.ok(userService.getAllUsersAccess());
+    }
+
     @GetMapping
     public ResponseEntity getUsers(){
-        return ResponseEntity.ok(userService.getAllUsersAccess());
+        return ResponseEntity.ok(userService.getAllUsers());
     }
 }
