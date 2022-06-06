@@ -3,6 +3,7 @@ package com.trexion.helpdesk.entity.user.user;
 import com.trexion.helpdesk.entity.ticket.Ticket;
 import com.trexion.helpdesk.entity.user.access.UserAccess;
 import lombok.*;
+import org.apache.commons.lang3.builder.ToStringExclude;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -41,21 +42,28 @@ public class User {
     private String image;
     @OneToOne
     @JoinColumn(name = "accessId")
+    @ToString.Exclude
     private UserAccess access;
     @OneToMany(mappedBy = "user")
+    @ToString.Exclude
     private List<Ticket> myTickets;
     @OneToMany(mappedBy = "requester")
+    @ToString.Exclude
     private List<Ticket> requestedTickets;
     @OneToMany(mappedBy = "technician")
+    @ToString.Exclude
     private List<Ticket> technicianTickets;
     @ManyToOne
+    @ToString.Exclude
     private UserStatus userStatus;
     @CreationTimestamp
+    @Builder.Default
     @NonNull
     @Column(nullable = false)
-    private LocalDateTime createDateTime;
+    private LocalDateTime createDateTime = LocalDateTime.now();
     @UpdateTimestamp
+    @Builder.Default
     @NonNull
     @Column(nullable = false)
-    private LocalDateTime updateDateTime;
+    private LocalDateTime updateDateTime = LocalDateTime.now();
 }

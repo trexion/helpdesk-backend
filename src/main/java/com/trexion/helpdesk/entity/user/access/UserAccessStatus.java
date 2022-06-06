@@ -15,7 +15,7 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Table(uniqueConstraints = {@UniqueConstraint(name = "uniqueName", columnNames = {"name"})})
-public class AccessStatus {
+public class UserAccessStatus {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)

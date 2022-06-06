@@ -33,17 +33,19 @@ public class UserAccess {
     @Column(nullable = false)
     private String password;
     @CreationTimestamp
+    @Builder.Default
     @NonNull
     @Column(nullable = false)
-    private LocalDateTime createDateTime;
+    private LocalDateTime createDateTime = LocalDateTime.now();
     @UpdateTimestamp
+    @Builder.Default
     @NonNull
     @Column(nullable = false)
-    private LocalDateTime updateDateTime;
+    private LocalDateTime updateDateTime = LocalDateTime.now();
     @OneToOne(mappedBy = "access")
     private User user;
     @ManyToOne
-    private AccessStatus status;
+    private UserAccessStatus status;
     @OneToMany(mappedBy = "userAccess")
     private List<AccessRole> roles;
     @OneToMany(mappedBy = "userAccess")

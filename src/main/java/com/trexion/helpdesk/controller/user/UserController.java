@@ -1,11 +1,10 @@
 package com.trexion.helpdesk.controller.user;
 
+import com.trexion.helpdesk.dto.request.user.UserCreationDto;
 import com.trexion.helpdesk.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/users")
@@ -14,12 +13,17 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/access")
-    public ResponseEntity getUsersAccess(){
+    public ResponseEntity getUsersAccess() {
         return ResponseEntity.ok(userService.getAllUsersAccess());
     }
 
     @GetMapping
-    public ResponseEntity getUsers(){
+    public ResponseEntity getUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
+    }
+
+    @PostMapping
+    public ResponseEntity createUser(@RequestBody UserCreationDto user) {
+        return ResponseEntity.ok(userService.createUser(user));
     }
 }
