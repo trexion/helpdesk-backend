@@ -4,10 +4,10 @@ USE helpdesk;
 
 	######### Access Status #########
 
-	INSERT IGNORE INTO access_status (name, active, create_date_time, update_date_time) VALUES ('Active', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
-	INSERT IGNORE INTO access_status (name, active, create_date_time, update_date_time) VALUES ('Suspended', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
-	INSERT IGNORE INTO access_status (name, active, create_date_time, update_date_time) VALUES ('Disabled', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
-	SET @activeAccessStatus = (SELECT id FROM access_status WHERE name = 'Active');
+	INSERT IGNORE INTO user_access_status (name, active, create_date_time, update_date_time) VALUES ('Active', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+	INSERT IGNORE INTO user_access_status (name, active, create_date_time, update_date_time) VALUES ('Suspended', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+	INSERT IGNORE INTO user_access_status (name, active, create_date_time, update_date_time) VALUES ('Disabled', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+	SET @activeAccessStatus = (SELECT id FROM user_access_status WHERE name = 'Active');
 
 	######### Access #########
 
@@ -36,6 +36,10 @@ USE helpdesk;
 	SET @adminRoleId = (SELECT id FROM `role` WHERE name = 'Admin');
 	INSERT IGNORE INTO `role` (name, description, active, create_date_time, update_date_time) VALUES ('Viewer', 'Allows Viewer accesss', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 	INSERT IGNORE INTO `role` (name, description, active, create_date_time, update_date_time) VALUES ('Technician', 'Allows Technician accesss', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+	######### Role Access #########
+
+	INSERT IGNORE INTO access_role (user_access_id, role_id, create_date_time) VALUES (@testAccessId, @adminRoleId, CURRENT_TIMESTAMP);
 	
 	####### Role Admin Access #######
 	
@@ -55,6 +59,10 @@ USE helpdesk;
 	INSERT IGNORE INTO user_group (name, description, active, create_date_time, update_date_time) VALUES ('Help Desk L1', 'General Help Desk group', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 	SET @groupId = (SELECT id FROM user_group WHERE name = 'Help Desk L1');
+
+	######### Group Access #########
+
+	INSERT IGNORE INTO access_group (user_access_id, group_id, create_date_time) VALUES (@testAccessId, @groupId, CURRENT_TIMESTAMP);
 	
 	######### Group Admin Access #########
 
