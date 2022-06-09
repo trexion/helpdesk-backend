@@ -20,9 +20,19 @@ public class UserController {
         return ResponseEntity.ok(userService.getAllUsersAccess());
     }
 
+    @GetMapping("/access/{userName}")
+    public ResponseEntity getUserAccess(@PathVariable String userName){
+        return ResponseEntity.ok(userService.getUserAccess(userName));
+    }
+
     @GetMapping
     public ResponseEntity getUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
+    }
+
+    @GetMapping("/{userName}")
+    public ResponseEntity getUser(@PathVariable String userName){
+        return ResponseEntity.ok(userService.getUser(userName));
     }
 
     @PostMapping

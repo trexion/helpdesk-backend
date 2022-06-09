@@ -55,6 +55,14 @@ public class UserService {
         return userRepo.findAll().stream().map(this::mapToUserDto).collect(Collectors.toList());
     }
 
+    public UserDto getUser(String userName){
+        return mapToUserDto(userAccessRepo.findByUserName(userName).get().getUser());
+    }
+
+    public UserAccessDto getUserAccess(String userName){
+        return mapToUserAccessDto(userAccessRepo.findByUserName(userName).get().getUser());
+    }
+
     public Optional<UserAccess> findUserAccess(String userName){
         return userAccessRepo.findByUserName(userName);
     }
