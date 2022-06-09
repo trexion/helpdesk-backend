@@ -71,7 +71,6 @@ public class UserService {
             .build();
     }
 
-
     public UserDto createUser(UserCreationDto userReceived){
         //check it's a valid user
         Optional<UserAccessStatus> userAccessStatus = userAccessStatusRepo.findById(userReceived.getUserStatus());
@@ -94,5 +93,12 @@ public class UserService {
         userAccess.setUser(user);
         log.info("user: {}", userAccess.getUser().getEmail());
         return mapToUserDto(user);
+    }
+
+    public void disableUser(String userName){
+        UserAccessStatus userAccessStatus = userAccessStatusRepo.findByName("Disabled").orElseThrow(/*add exception*/);
+        UserAccess userAccess = userAccessRepo.findByUserName(userName).orElseThrow(/*add exception*/);
+        userAccess.setStatus(userAccessStatus);
+        userAccessRepo.save(userAccess);
     }
 }

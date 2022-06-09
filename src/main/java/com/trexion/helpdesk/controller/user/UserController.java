@@ -26,4 +26,10 @@ public class UserController {
     public ResponseEntity createUser(@RequestBody UserCreationDto user) {
         return ResponseEntity.ok(userService.createUser(user));
     }
+
+    @DeleteMapping
+    public ResponseEntity disableUser(@RequestParam String userName){
+        userService.disableUser(userName);
+        return ResponseEntity.ok(String.format("User %s disabled successfully", userName));
+    }
 }
