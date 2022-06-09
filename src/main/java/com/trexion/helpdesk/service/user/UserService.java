@@ -1,6 +1,7 @@
 package com.trexion.helpdesk.service.user;
 
 import com.trexion.helpdesk.dto.request.user.UserCreationDto;
+import com.trexion.helpdesk.dto.request.user.UserEditDto;
 import com.trexion.helpdesk.dto.response.user.UserAccessDto;
 import com.trexion.helpdesk.dto.response.user.UserDto;
 import com.trexion.helpdesk.entity.user.access.UserAccess;
@@ -100,5 +101,23 @@ public class UserService {
         UserAccess userAccess = userAccessRepo.findByUserName(userName).orElseThrow(/*add exception*/);
         userAccess.setStatus(userAccessStatus);
         userAccessRepo.save(userAccess);
+    }
+
+    public UserDto editUser(UserEditDto userDto){
+        //check user exists
+        UserAccess userAccess = userAccessRepo.findByUserName(userDto.getUserName()).orElseThrow(/*TODO*/);
+        UserStatus userStatus = userStatusRepo.getById(userDto.getUserStatus());
+        //check userDto has valid data - TODO
+        //save user to db
+
+        User user = userAccess.getUser();
+        user.setFirstName(userDto.getFirstName());
+        user.setLastName(userDto.getLastName());
+        user.setEmail(userDto.getEmail());
+        user.setPhone(userDto.getPhone());
+        user.setImage(userDto.getImage());
+        user.setUserStatus(userStatus);
+
+        return mapToUserDto(userRepo.save(user));
     }
 }

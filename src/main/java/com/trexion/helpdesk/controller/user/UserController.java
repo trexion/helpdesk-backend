@@ -1,8 +1,11 @@
 package com.trexion.helpdesk.controller.user;
 
 import com.trexion.helpdesk.dto.request.user.UserCreationDto;
+import com.trexion.helpdesk.dto.request.user.UserEditDto;
+import com.trexion.helpdesk.dto.response.user.UserDto;
 import com.trexion.helpdesk.service.user.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +27,12 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity createUser(@RequestBody UserCreationDto user) {
-        return ResponseEntity.ok(userService.createUser(user));
+        return new ResponseEntity(userService.createUser(user), HttpStatus.CREATED);
+    }
+
+    @PutMapping
+    public ResponseEntity editUser(@RequestBody UserEditDto userEditDto){
+        return ResponseEntity.ok(userService.editUser(userEditDto));
     }
 
     @DeleteMapping
