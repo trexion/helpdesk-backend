@@ -1,4 +1,4 @@
-package com.trexion.helpdesk.repository.user.role;
+package com.trexion.helpdesk.repository.role;
 
 import com.trexion.helpdesk.entity.role.Role;
 import org.springframework.data.jpa.repository.JpaRepository;

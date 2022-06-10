@@ -5,8 +5,7 @@ import lombok.Value;
 
 @Value
 @Builder
-public class RoleDto {
-    Integer id;
-    String name;
-    String description;
+public class RoleAdminDto {
+    String userName;
+    String accessType;
 }
