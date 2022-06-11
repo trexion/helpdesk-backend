@@ -28,5 +28,6 @@ public class AccessRole {
     @CreationTimestamp
     @NonNull
     @Column(nullable = false)
-    private LocalDateTime createDateTime;
+    @Builder.Default
+    private LocalDateTime createDateTime = LocalDateTime.now();
 }

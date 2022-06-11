@@ -63,10 +63,6 @@ public class UserService {
         return mapToUserAccessDto(userAccessRepo.findByUserName(userName).get().getUser());
     }
 
-    public Optional<UserAccess> findUserAccess(String userName){
-        return userAccessRepo.findByUserName(userName);
-    }
-
     private UserDto mapToUserDto(User user){
         return UserDto.builder()
             .firstName(user.getFirstName())
