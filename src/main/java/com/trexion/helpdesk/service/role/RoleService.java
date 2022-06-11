@@ -1,6 +1,6 @@
 package com.trexion.helpdesk.service.role;
 
-import com.trexion.helpdesk.dto.request.role.RoleCreationDto;
+import com.trexion.helpdesk.dto.request.role.RoleRequestDto;
 import com.trexion.helpdesk.dto.response.role.RoleAdminDto;
 import com.trexion.helpdesk.dto.response.role.RoleDetailsDto;
 import com.trexion.helpdesk.dto.response.role.RoleDto;
@@ -77,11 +77,11 @@ public class RoleService {
         return accessRoleRepo.findAllByRoleId(role.getId());
     }
 
-    public RoleDto createRole(RoleCreationDto roleCreationDto){
+    public RoleDto createRole(RoleRequestDto roleRequestDto){
         //validate role is valid - TODO
         Role newRole = roleRepo.save(Role.builder()
-                        .name(roleCreationDto.getName())
-                        .description(roleCreationDto.getDescription())
+                        .name(roleRequestDto.getName())
+                        .description(roleRequestDto.getDescription())
                         .active(true)
                 .build());
         return mapToRoleDto(newRole);
@@ -91,5 +91,13 @@ public class RoleService {
         Role role = roleRepo.getById(id);
         role.setActive(false);
         roleRepo.save(role);
+    }
+
+    public RoleDto editRole(Integer id, RoleRequestDto roleRequestDto){
+        //validate role is valid
+        Role role = roleRepo.getById(id);
+        role.setName(roleRequestDto.getName());
+        role.setDescription(roleRequestDto.getDescription());
+        return mapToRoleDto(roleRepo.save(role));
     }
 }

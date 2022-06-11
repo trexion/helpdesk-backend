@@ -1,6 +1,6 @@
 package com.trexion.helpdesk.controller.role;
 
-import com.trexion.helpdesk.dto.request.role.RoleCreationDto;
+import com.trexion.helpdesk.dto.request.role.RoleRequestDto;
 import com.trexion.helpdesk.service.role.RoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -33,13 +33,18 @@ public class RoleController {
     }
 
     @PostMapping
-    public ResponseEntity createRole(@RequestBody RoleCreationDto roleCreationDto){
-        return ResponseEntity.ok(roleService.createRole(roleCreationDto));
+    public ResponseEntity createRole(@RequestBody RoleRequestDto roleRequestDto){
+        return ResponseEntity.ok(roleService.createRole(roleRequestDto));
     }
 
     @DeleteMapping
     public ResponseEntity disableRole(@RequestParam Integer id){
         roleService.disableRole(id);
         return ResponseEntity.ok(String.format("Role %s disabled successfully", id));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity editRole(@PathVariable Integer id, @RequestBody RoleRequestDto roleRequestDto){
+        return ResponseEntity.ok(roleService.editRole(id, roleRequestDto));
     }
 }

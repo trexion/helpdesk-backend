@@ -5,7 +5,7 @@ import lombok.Value;
 
 @Value
 @Builder
-public class RoleCreationDto {
+public class RoleRequestDto {
     String name;
     String description;
 }
