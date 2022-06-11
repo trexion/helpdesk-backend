@@ -62,12 +62,24 @@ public class RoleController {
     @PostMapping("/details/{id}/members")
     public ResponseEntity addRoleMember(@PathVariable Integer id, @RequestParam String userName){
         roleService.addRoleMember(id, userName);
-        return ResponseEntity.ok("Role admin added successfully");
+        return ResponseEntity.ok("Role member added successfully");
     }
 
     @PostMapping("/details/{id}/admins")
     public ResponseEntity addRoleAdmin(@PathVariable Integer id, @RequestBody RoleAdminDto roleAdminDto){
         roleService.addRoleAdmin(id, roleAdminDto);
         return ResponseEntity.ok("Role admin added successfully");
+    }
+
+    @DeleteMapping("/details/{id}/members")
+    public ResponseEntity deleteRoleMember(@PathVariable Integer id, @RequestParam String userName){
+        roleService.deleteRoleMember(id, userName);
+        return ResponseEntity.ok("Role member deleted successfully");
+    }
+
+    @DeleteMapping("/details/{id}/admins")
+    public ResponseEntity deleteRoleAdmin(@PathVariable Integer id, @RequestBody RoleAdminDto roleAdminDto){
+        roleService.deleteRoleAdmin(id, roleAdminDto);
+        return ResponseEntity.ok("Role admin deleted successfully");
     }
 }

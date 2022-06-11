@@ -14,7 +14,6 @@ import com.trexion.helpdesk.repository.role.RoleAdminAccessRepo;
 import com.trexion.helpdesk.repository.role.RoleAdminRepo;
 import com.trexion.helpdesk.repository.role.RoleRepo;
 import com.trexion.helpdesk.repository.user.access.UserAccessRepo;
-import com.trexion.helpdesk.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -128,5 +127,19 @@ public class RoleService {
                         .userAccess(userAccess)
                         .access(roleAdminAccess)
                 .build());
+    }
+
+    public void deleteRoleMember(Integer roleId, String userName){
+        //validate data - TODO
+        UserAccess userAccess = userAccessRepo.findByUserName(userName).orElseThrow(/*TODO*/);
+        AccessRole accessRole = accessRoleRepo.findByRoleIdAndUserAccessId(roleId, userAccess.getId());
+        accessRoleRepo.delete(accessRole);
+    }
+
+    public void deleteRoleAdmin(Integer roleId, RoleAdminDto roleAdminDto){
+        //validate data - TODO
+        UserAccess userAccess = userAccessRepo.findByUserName(roleAdminDto.getUserName()).orElseThrow(/*TODO*/);
+        RoleAdmin roleAdmin = roleAdminRepo.findByRoleIdAndUserAccessId(roleId, userAccess.getId());
+        roleAdminRepo.delete(roleAdmin);
     }
 }

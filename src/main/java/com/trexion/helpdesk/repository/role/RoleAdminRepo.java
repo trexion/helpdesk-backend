@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface RoleAdminRepo extends JpaRepository<RoleAdmin, Integer> {
     List<RoleAdmin> findAllByRoleId(Integer roleId);
+    RoleAdmin findByRoleIdAndUserAccessId(Integer roleId, Long userAccessId);
 }
