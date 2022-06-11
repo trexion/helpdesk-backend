@@ -1,12 +1,10 @@
 package com.trexion.helpdesk.controller.role;
 
+import com.trexion.helpdesk.dto.request.role.RoleCreationDto;
 import com.trexion.helpdesk.service.role.RoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/roles")
@@ -32,5 +30,16 @@ public class RoleController {
     @GetMapping("/details/{id}")
     public ResponseEntity getRoleDetails(@PathVariable Integer id){
         return ResponseEntity.ok(roleService.getRoleDetails(id));
+    }
+
+    @PostMapping
+    public ResponseEntity createRole(@RequestBody RoleCreationDto roleCreationDto){
+        return ResponseEntity.ok(roleService.createRole(roleCreationDto));
+    }
+
+    @DeleteMapping
+    public ResponseEntity disableRole(@RequestParam Integer id){
+        roleService.disableRole(id);
+        return ResponseEntity.ok(String.format("Role %s disabled successfully", id));
     }
 }

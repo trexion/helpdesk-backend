@@ -1,5 +1,6 @@
 package com.trexion.helpdesk.service.role;
 
+import com.trexion.helpdesk.dto.request.role.RoleCreationDto;
 import com.trexion.helpdesk.dto.response.role.RoleAdminDto;
 import com.trexion.helpdesk.dto.response.role.RoleDetailsDto;
 import com.trexion.helpdesk.dto.response.role.RoleDto;
@@ -42,22 +43,22 @@ public class RoleService {
 
     private static RoleDto mapToRoleDto(Role role){
         return RoleDto.builder()
-            .id(role.getId())
-            .name(role.getName())
-            .description(role.getDescription())
+                .id(role.getId())
+                .name(role.getName())
+                .description(role.getDescription())
             .build();
     }
 
     private RoleDetailsDto mapToRoleDetailsDto(Role role){
         return RoleDetailsDto.builder()
-            .id(role.getId())
-            .name(role.getName())
-            .description(role.getDescription())
-            .active(role.isActive())
-            .createDateTime(role.getCreateDateTime())
-            .updateDateTime(role.getUpdateDateTime())
-            .admins(getRoleAdmins(role).stream().map(RoleService::mapToRoleAdminDto).collect(Collectors.toList()))
-            .members(getRoleMembers(role).stream().map(x -> x.getUserAccess().getUserName()).collect(Collectors.toList()))
+                .id(role.getId())
+                .name(role.getName())
+                .description(role.getDescription())
+                .active(role.isActive())
+                .createDateTime(role.getCreateDateTime())
+                .updateDateTime(role.getUpdateDateTime())
+                .admins(getRoleAdmins(role).stream().map(RoleService::mapToRoleAdminDto).collect(Collectors.toList()))
+                .members(getRoleMembers(role).stream().map(x -> x.getUserAccess().getUserName()).collect(Collectors.toList()))
             .build();
     }
 
@@ -67,12 +68,28 @@ public class RoleService {
 
     private static RoleAdminDto mapToRoleAdminDto(RoleAdmin roleAdmin){
         return RoleAdminDto.builder()
-            .userName(roleAdmin.getUserAccess().getUserName())
-            .accessType(roleAdmin.getAccess().getName())
+                .userName(roleAdmin.getUserAccess().getUserName())
+                .accessType(roleAdmin.getAccess().getName())
             .build();
     }
 
     public List<AccessRole> getRoleMembers(Role role){
         return accessRoleRepo.findAllByRoleId(role.getId());
+    }
+
+    public RoleDto createRole(RoleCreationDto roleCreationDto){
+        //validate role is valid - TODO
+        Role newRole = roleRepo.save(Role.builder()
+                        .name(roleCreationDto.getName())
+                        .description(roleCreationDto.getDescription())
+                        .active(true)
+                .build());
+        return mapToRoleDto(newRole);
+    }
+
+    public void disableRole(Integer id){
+        Role role = roleRepo.getById(id);
+        role.setActive(false);
+        roleRepo.save(role);
     }
 }
