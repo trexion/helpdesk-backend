@@ -7,9 +7,14 @@ import com.trexion.helpdesk.dto.response.role.RoleDto;
 import com.trexion.helpdesk.entity.role.AccessRole;
 import com.trexion.helpdesk.entity.role.Role;
 import com.trexion.helpdesk.entity.role.RoleAdmin;
+import com.trexion.helpdesk.entity.role.RoleAdminAccess;
+import com.trexion.helpdesk.entity.user.access.UserAccess;
 import com.trexion.helpdesk.repository.role.AccessRoleRepo;
+import com.trexion.helpdesk.repository.role.RoleAdminAccessRepo;
 import com.trexion.helpdesk.repository.role.RoleAdminRepo;
 import com.trexion.helpdesk.repository.role.RoleRepo;
+import com.trexion.helpdesk.repository.user.access.UserAccessRepo;
+import com.trexion.helpdesk.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -23,7 +28,9 @@ import java.util.stream.Collectors;
 public class RoleService {
     private final RoleRepo roleRepo;
     private final RoleAdminRepo roleAdminRepo;
+    private final RoleAdminAccessRepo roleAdminAccessRepo;
     private final AccessRoleRepo accessRoleRepo;
+    private final UserAccessRepo userAccessRepo;
 
     public List<RoleDto> getAllRoles(){
         return roleRepo.findAll().stream().map(RoleService::mapToRoleDto).collect(Collectors.toList());
@@ -57,13 +64,13 @@ public class RoleService {
                 .active(role.isActive())
                 .createDateTime(role.getCreateDateTime())
                 .updateDateTime(role.getUpdateDateTime())
-                .admins(getRoleAdmins(role).stream().map(RoleService::mapToRoleAdminDto).collect(Collectors.toList()))
-                .members(getRoleMembers(role).stream().map(x -> x.getUserAccess().getUserName()).collect(Collectors.toList()))
+                .admins(getRoleAdmins(role.getId()))
+                .members(getRoleMembers(role.getId()))
             .build();
     }
 
-    public List<RoleAdmin> getRoleAdmins(Role role){
-        return roleAdminRepo.findAllByRoleId(role.getId());
+    public List<RoleAdminDto> getRoleAdmins(Integer roleId){
+        return roleAdminRepo.findAllByRoleId(roleId).stream().map(RoleService::mapToRoleAdminDto).collect(Collectors.toList());
     }
 
     private static RoleAdminDto mapToRoleAdminDto(RoleAdmin roleAdmin){
@@ -73,8 +80,8 @@ public class RoleService {
             .build();
     }
 
-    public List<AccessRole> getRoleMembers(Role role){
-        return accessRoleRepo.findAllByRoleId(role.getId());
+    public List<String> getRoleMembers(Integer roleId){
+        return accessRoleRepo.findAllByRoleId(roleId).stream().map(x -> x.getUserAccess().getUserName()).collect(Collectors.toList());
     }
 
     public RoleDto createRole(RoleRequestDto roleRequestDto){
@@ -99,5 +106,27 @@ public class RoleService {
         role.setName(roleRequestDto.getName());
         role.setDescription(roleRequestDto.getDescription());
         return mapToRoleDto(roleRepo.save(role));
+    }
+
+    public void addRoleMember(Integer roleId, String userName){
+        //validate data - TODO
+        UserAccess userAccess = userAccessRepo.findByUserName(userName).orElseThrow(/*TODO*/);
+        Role role = roleRepo.getById(roleId);
+        accessRoleRepo.save(AccessRole.builder()
+                        .role(role)
+                        .userAccess(userAccess)
+                .build());
+    }
+
+    public void addRoleAdmin(Integer roleId, RoleAdminDto roleAdminDto){
+        //validate data - TODO
+        Role role = roleRepo.getById(roleId);
+        RoleAdminAccess roleAdminAccess = roleAdminAccessRepo.findByName(roleAdminDto.getAccessType()).orElseThrow(/*TODO*/);
+        UserAccess userAccess = userAccessRepo.findByUserName(roleAdminDto.getUserName()).orElseThrow(/*TODO*/);
+        roleAdminRepo.save(RoleAdmin.builder()
+                        .role(role)
+                        .userAccess(userAccess)
+                        .access(roleAdminAccess)
+                .build());
     }
 }
