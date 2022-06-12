@@ -1,12 +1,10 @@
 package com.trexion.helpdesk.controller.group;
 
+import com.trexion.helpdesk.dto.request.group.GroupRequestDto;
 import com.trexion.helpdesk.service.group.GroupService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/groups")
@@ -42,5 +40,15 @@ public class GroupController {
     @GetMapping("/details/{id}/members")
     public ResponseEntity getGroupMembers(@PathVariable Integer id){
         return ResponseEntity.ok(groupService.getGroupMembers(id));
+    }
+
+    @PostMapping
+    public ResponseEntity createGroup(@RequestBody GroupRequestDto groupRequestDto){
+        return ResponseEntity.ok(groupService.createGroup(groupRequestDto));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity editGroup(@PathVariable Integer id, @RequestBody GroupRequestDto groupRequestDto){
+        return ResponseEntity.ok(groupService.editGroup(id, groupRequestDto));
     }
 }

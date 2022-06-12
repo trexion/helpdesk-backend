@@ -1,8 +1,6 @@
 package com.trexion.helpdesk.entity.group;
 
 import com.trexion.helpdesk.entity.configuration_item.ConfigurationItem;
-import com.trexion.helpdesk.entity.role.AccessRole;
-import com.trexion.helpdesk.entity.role.RoleAdmin;
 import com.trexion.helpdesk.entity.ticket.Ticket;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;

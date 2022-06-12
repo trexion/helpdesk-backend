@@ -1,5 +1,6 @@
 package com.trexion.helpdesk.service.group;
 
+import com.trexion.helpdesk.dto.request.group.GroupRequestDto;
 import com.trexion.helpdesk.dto.response.group.GroupAdminDto;
 import com.trexion.helpdesk.dto.response.group.GroupDetailsDto;
 import com.trexion.helpdesk.dto.response.group.GroupDto;
@@ -51,6 +52,7 @@ public class GroupService {
 
     private GroupDetailsDto mapToGroupDetailsDto(Group group){
         return GroupDetailsDto.builder()
+                .id(group.getId())
                 .name(group.getName())
                 .description(group.getDescription())
                 .active(group.isActive())
@@ -74,5 +76,19 @@ public class GroupService {
 
     public List<String> getGroupMembers(Integer groupId){
         return accessGroupRepo.findAllByGroupId(groupId).stream().map(x -> x.getUserAccess().getUserName()).collect(Collectors.toList());
+    }
+
+    public GroupDto createGroup(GroupRequestDto groupRequestDto){
+        return mapToGroupDto(groupRepo.save(Group.builder()
+                        .name(groupRequestDto.getName())
+                        .description(groupRequestDto.getDescription())
+                .build()));
+    }
+
+    public GroupDto editGroup(Integer id, GroupRequestDto groupRequestDto){
+        Group group = groupRepo.getById(id);
+        group.setName(groupRequestDto.getName());
+        group.setDescription(groupRequestDto.getDescription());
+        return mapToGroupDto(groupRepo.save(group));
     }
 }
