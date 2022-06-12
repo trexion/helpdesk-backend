@@ -68,12 +68,12 @@ public class GroupController {
     @DeleteMapping("/details/{id}/members")
     public ResponseEntity deleteGroupMember(@PathVariable Integer id, @RequestParam String userName){
         groupService.deleteGroupMember(id, userName);
-        return ResponseEntity.ok(String.format("Added %s successfully as member", userName));
+        return ResponseEntity.ok(String.format("Removed %s successfully as member", userName));
     }
 
     @DeleteMapping("/details/{id}/admins")
     public ResponseEntity deleteGroupAdmin(@PathVariable Integer id, @RequestBody GroupAdminDto groupAdminDto){
         groupService.deleteGroupAdmin(id, groupAdminDto);
-        return ResponseEntity.ok(String.format("Added %s successfully as %s", groupAdminDto.getUserName(), groupAdminDto.getAccessType()));
+        return ResponseEntity.ok(String.format("Removed %s successfully as %s", groupAdminDto.getUserName(), groupAdminDto.getAccessType()));
     }
 }
