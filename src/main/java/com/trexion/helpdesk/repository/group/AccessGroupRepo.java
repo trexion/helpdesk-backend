@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface AccessGroupRepo extends JpaRepository<AccessGroup, Integer> {
     List<AccessGroup> findAllByGroupId(Integer groupId);
+    AccessGroup findByGroupIdAndUserAccessId(Integer groupId, Long userAccessId);
 }

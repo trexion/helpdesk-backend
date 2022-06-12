@@ -1,6 +1,7 @@
 package com.trexion.helpdesk.controller.group;
 
 import com.trexion.helpdesk.dto.request.group.GroupRequestDto;
+import com.trexion.helpdesk.dto.response.group.GroupAdminDto;
 import com.trexion.helpdesk.service.group.GroupService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -50,5 +51,29 @@ public class GroupController {
     @PutMapping("/{id}")
     public ResponseEntity editGroup(@PathVariable Integer id, @RequestBody GroupRequestDto groupRequestDto){
         return ResponseEntity.ok(groupService.editGroup(id, groupRequestDto));
+    }
+
+    @PostMapping("/details/{id}/members")
+    public ResponseEntity addGroupMember(@PathVariable Integer id, @RequestParam String userName){
+        groupService.addGroupMember(id, userName);
+        return ResponseEntity.ok(String.format("Added %s successfully as member", userName));
+    }
+
+    @PostMapping("/details/{id}/admins")
+    public ResponseEntity addGroupAdmin(@PathVariable Integer id, @RequestBody GroupAdminDto groupAdminDto){
+        groupService.addGroupAdmin(id, groupAdminDto);
+        return ResponseEntity.ok(String.format("Added %s successfully as %s", groupAdminDto.getUserName(), groupAdminDto.getAccessType()));
+    }
+
+    @DeleteMapping("/details/{id}/members")
+    public ResponseEntity deleteGroupMember(@PathVariable Integer id, @RequestParam String userName){
+        groupService.deleteGroupMember(id, userName);
+        return ResponseEntity.ok(String.format("Added %s successfully as member", userName));
+    }
+
+    @DeleteMapping("/details/{id}/admins")
+    public ResponseEntity deleteGroupAdmin(@PathVariable Integer id, @RequestBody GroupAdminDto groupAdminDto){
+        groupService.deleteGroupAdmin(id, groupAdminDto);
+        return ResponseEntity.ok(String.format("Added %s successfully as %s", groupAdminDto.getUserName(), groupAdminDto.getAccessType()));
     }
 }

@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface GroupAdminAccessRepo extends JpaRepository<GroupAdminAccess, Integer> {
+    GroupAdminAccess findByName(String name);
 }
