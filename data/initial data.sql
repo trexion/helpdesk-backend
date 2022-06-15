@@ -73,7 +73,7 @@ USE helpdesk;
 	
 	######### Group Admin #########
 
-	INSERT IGNORE INTO group_admin (user_access_id, group_id, access_id, create_date_time) VALUES (@testAccessId, @groupId, @ownerGroupId, CURRENT_TIMESTAMP);
+	INSERT IGNORE INTO group_admin (user_access_id, group_id, access_id, create_date_time, update_date_time) VALUES (@testAccessId, @groupId, @ownerGroupId, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 
 ############# TICKETS #############

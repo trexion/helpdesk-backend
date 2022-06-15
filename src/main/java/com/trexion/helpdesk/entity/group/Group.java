@@ -1,8 +1,6 @@
 package com.trexion.helpdesk.entity.group;
 
 import com.trexion.helpdesk.entity.configuration_item.ConfigurationItem;
-import com.trexion.helpdesk.entity.role.AccessRole;
-import com.trexion.helpdesk.entity.role.RoleAdmin;
 import com.trexion.helpdesk.entity.ticket.Ticket;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -36,11 +34,13 @@ public class Group {
     @CreationTimestamp
     @NonNull
     @Column(nullable = false)
-    private LocalDateTime createDateTime;
+    @Builder.Default
+    private LocalDateTime createDateTime = LocalDateTime.now();
     @UpdateTimestamp
     @NonNull
     @Column(nullable = false)
-    private LocalDateTime updateDateTime;
+    @Builder.Default
+    private LocalDateTime updateDateTime = LocalDateTime.now();
     @OneToMany(mappedBy = "group")
     private List<GroupAdmin> groupAdmins;
     @OneToMany(mappedBy = "group")

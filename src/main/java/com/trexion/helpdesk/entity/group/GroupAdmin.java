@@ -20,15 +20,16 @@ public class GroupAdmin {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Integer id;
-    private boolean active = true;
     @CreationTimestamp
     @NonNull
     @Column(nullable = false)
-    private LocalDateTime createDateTime;
+    @Builder.Default
+    private LocalDateTime createDateTime = LocalDateTime.now();
     @UpdateTimestamp
     @NonNull
     @Column(nullable = false)
-    private LocalDateTime updateDateTime;
+    @Builder.Default
+    private LocalDateTime updateDateTime = LocalDateTime.now();
     @ManyToOne
     @JoinColumn(name = "user_access_id")
     UserAccess userAccess;
