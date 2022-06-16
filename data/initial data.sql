@@ -89,9 +89,9 @@ USE helpdesk;
 
 	SET @monitorId = (SELECT id FROM ticket_category WHERE name = 'Monitor');
 
-	INSERT IGNORE INTO ticket_category (name, parent, active, create_date_time, update_date_time) VALUES ("Doesn't turn on", @hardwareId, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+	INSERT IGNORE INTO ticket_category (name, parent, active, create_date_time, update_date_time) VALUES ("Doesn't turn on", @monitorId, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
-	SET @categoryId = (SELECT id FROM ticket_category WHERE name = "Doesn't turn on" AND parent = @hardwareId);
+	SET @categoryId = (SELECT id FROM ticket_category WHERE name = "Doesn't turn on" AND parent = @monitorId);
 
 	######### Priority #########
 
