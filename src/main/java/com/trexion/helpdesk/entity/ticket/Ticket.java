@@ -2,6 +2,7 @@ package com.trexion.helpdesk.entity.ticket;
 
 import com.trexion.helpdesk.entity.configuration_item.ConfigurationItem;
 import com.trexion.helpdesk.entity.group.Group;
+import com.trexion.helpdesk.entity.user.access.UserAccess;
 import com.trexion.helpdesk.entity.user.user.User;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -40,28 +41,39 @@ public class Ticket {
     @NonNull
     @ManyToOne
     @JoinColumn(nullable = false, name = "user_id")
-    private User user;
+    private UserAccess user;
     @NonNull
     @ManyToOne
     @JoinColumn(nullable = false, name = "requester_id")
-    private User requester;
+    private UserAccess requester;
     @ManyToOne
     @JoinColumn(name = "technician_id")
-    private User technician;
+    private UserAccess technician;
     @ManyToOne
     @JoinColumn(name = "group_id")
     private Group group;
     @ManyToOne
     @JoinColumn(name = "configuration_item_id")
     private ConfigurationItem configurationItem;
+    @OneToMany(mappedBy = "user")
+    @ToString.Exclude
+    private List<Ticket> myTickets;
+    @OneToMany(mappedBy = "requester")
+    @ToString.Exclude
+    private List<Ticket> requestedTickets;
+    @OneToMany(mappedBy = "technician")
+    @ToString.Exclude
+    private List<Ticket> technicianTickets;
     @CreationTimestamp
     @NonNull
     @Column(nullable = false)
-    private LocalDateTime createDateTime;
+    @Builder.Default
+    private LocalDateTime createDateTime = LocalDateTime.now();
     @UpdateTimestamp
     @NonNull
     @Column(nullable = false)
-    private LocalDateTime updateDateTime;
+    @Builder.Default
+    private LocalDateTime updateDateTime = LocalDateTime.now();
     @NonNull
     @ManyToOne
     @JoinColumn(nullable = false, name = "status_id")

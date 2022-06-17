@@ -44,15 +44,6 @@ public class User {
     @JoinColumn(name = "accessId")
     @ToString.Exclude
     private UserAccess access;
-    @OneToMany(mappedBy = "user")
-    @ToString.Exclude
-    private List<Ticket> myTickets;
-    @OneToMany(mappedBy = "requester")
-    @ToString.Exclude
-    private List<Ticket> requestedTickets;
-    @OneToMany(mappedBy = "technician")
-    @ToString.Exclude
-    private List<Ticket> technicianTickets;
     @ManyToOne
     @ToString.Exclude
     private UserStatus userStatus;

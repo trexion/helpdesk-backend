@@ -105,6 +105,7 @@ USE helpdesk;
 	######### Status #########
 	
 	INSERT IGNORE INTO ticket_status (name, active, create_date_time, update_date_time) VALUES ('Draft', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT IGNORE INTO ticket_status (name, active, create_date_time, update_date_time) VALUES ('Submitted', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 	INSERT IGNORE INTO ticket_status (name, active, create_date_time, update_date_time) VALUES ('In progress', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 	INSERT IGNORE INTO ticket_status (name, active, create_date_time, update_date_time) VALUES ('Awaiting customer', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 	INSERT IGNORE INTO ticket_status (name, active, create_date_time, update_date_time) VALUES ('Resolved', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
@@ -121,7 +122,7 @@ USE helpdesk;
 	######### Ticket #########
 
 	INSERT IGNORE INTO ticket (subject, description, category_id, priority_id, group_id, user_id, requester_id, technician_id, configuration_item_id, status_id, create_date_time, update_date_time)
-		VALUES ("The monitor doesn't turn on!", "The monitor doesn't turn on!", @categoryId, @priorityId, @groupId, @testUserId, @testUserId, @testUserId, @configurationItemId, @statusId, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+		VALUES ("The monitor doesn't turn on!", "The monitor doesn't turn on!", @categoryId, @priorityId, @groupId, @testAccessId, @testAccessId, @testAccessId, @configurationItemId, @statusId, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 	SET @ticketId = (SELECT id FROM ticket LIMIT 1);
 
