@@ -35,7 +35,7 @@ class TicketControllerTest {
                 .andExpect(status().isOk());
 
         //Then
-        verify(service, times(1)).getAll();
+        verify(service, times(1)).getAllTickets();
     }
 
 }
