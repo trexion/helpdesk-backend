@@ -26,4 +26,9 @@ public class TicketController {
     public ResponseEntity createTicket(@RequestBody TicketRequestDto ticketRequestDto) {
         return ResponseEntity.ok(ticketService.createTicket(ticketRequestDto));
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity editTicket(@PathVariable Long id, @RequestBody TicketRequestDto ticketRequestDto) {
+        return ResponseEntity.ok(ticketService.editTicket(id, ticketRequestDto));
+    }
 }

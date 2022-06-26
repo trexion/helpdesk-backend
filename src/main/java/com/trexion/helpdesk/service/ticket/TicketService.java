@@ -68,6 +68,30 @@ public class TicketService {
                 .build()));
     }
 
+    public TicketDto editTicket(Long id, TicketRequestDto ticketRequestDto){
+        Ticket ticket = ticketRepo.getById(id);
+
+        UserAccess recipient = userAccessRepo.findByUserName(ticketRequestDto.getRecipient()).orElseThrow(/*TODO*/);
+        UserAccess technician = userAccessRepo.findByUserName(ticketRequestDto.getTechnician()).orElseThrow(/*TODO*/);
+
+        TicketPriority ticketPriority = ticketPriorityRepo.getById(ticketRequestDto.getPriority());
+        TicketCategory ticketCategory = ticketCategoryRepo.getById(ticketRequestDto.getCategory());
+        TicketStatus ticketStatus = ticketStatusRepo.findByName("Submitted");
+
+        Group group = groupRepo.getById(ticketRequestDto.getGroup());
+        ConfigurationItem configurationItem = configurationItemRepo.getById(ticketRequestDto.getConfigurationItem());
+
+        ticket.setUser(recipient);
+        ticket.setGroup(group);
+        ticket.setTechnician(technician);
+        ticket.setPriority(ticketPriority);
+        ticket.setCategory(ticketCategory);
+        ticket.setStatus(ticketStatus);
+        ticket.setConfigurationItem(configurationItem);
+
+        return mapToTicketDto(ticketRepo.save(ticket));
+    }
+
     private static TicketDto mapToTicketDto(Ticket ticket){
         return TicketDto.builder()
                 .id(ticket.getId())

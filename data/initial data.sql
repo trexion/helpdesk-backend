@@ -105,7 +105,7 @@ USE helpdesk;
 	######### Status #########
 	
 	INSERT IGNORE INTO ticket_status (name, active, create_date_time, update_date_time) VALUES ('Draft', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
-INSERT IGNORE INTO ticket_status (name, active, create_date_time, update_date_time) VALUES ('Submitted', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+	INSERT IGNORE INTO ticket_status (name, active, create_date_time, update_date_time) VALUES ('Submitted', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 	INSERT IGNORE INTO ticket_status (name, active, create_date_time, update_date_time) VALUES ('In progress', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 	INSERT IGNORE INTO ticket_status (name, active, create_date_time, update_date_time) VALUES ('Awaiting customer', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 	INSERT IGNORE INTO ticket_status (name, active, create_date_time, update_date_time) VALUES ('Resolved', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
