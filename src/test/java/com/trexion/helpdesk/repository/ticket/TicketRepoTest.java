@@ -2,7 +2,7 @@ package com.trexion.helpdesk.repository.ticket;
 
 import com.trexion.helpdesk.Entities;
 import com.trexion.helpdesk.entity.ticket.Ticket;
-import com.trexion.helpdesk.repository.user.user.UserRepo;
+import com.trexion.helpdesk.repository.user.access.UserAccessRepo;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,16 +20,16 @@ class TicketRepoTest {
     @Autowired
     private TicketStatusRepo ticketStatusRepo;
     @Autowired
-    private UserRepo userRepo;
+    private UserAccessRepo userAccessRepo;
 
     @Test
     @DisplayName("save should persist a given unpersisted entity")
     void save_() {
         //Given
         Ticket ticket = Entities.randomTicket();
-        userRepo.save(ticket.getUser());
-        userRepo.save(ticket.getRequester());
-        userRepo.save(ticket.getTechnician());
+        userAccessRepo.save(ticket.getUser());
+        userAccessRepo.save(ticket.getRequester());
+        userAccessRepo.save(ticket.getTechnician());
         ticketStatusRepo.save(ticket.getStatus());
 
         //When
